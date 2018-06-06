@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Vector源码解析 Vector概述及继承体系Vector 类可以实现可增长的对象数组。与数组一样，它包含可以使用整数索引进行访问的组件。与新 collection 实现不同，Vector 是同步的。看一下Vector的继承体系：12public class Vector&amp;lt;E&amp;gt;extends AbstractList&amp;lt;E&amp;gt;implements List&amp;lt;E&amp;gt;,">
+<meta name="keywords" content="个人博客,java,web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vector的源码解析">
+<meta property="og:url" content="http://yoursite.com/2018/06/06/Vector的源码解析/index.html">
+<meta property="og:site_name" content="magic">
+<meta property="og:description" content="Vector源码解析 Vector概述及继承体系Vector 类可以实现可增长的对象数组。与数组一样，它包含可以使用整数索引进行访问的组件。与新 collection 实现不同，Vector 是同步的。看一下Vector的继承体系：12public class Vector&amp;lt;E&amp;gt;extends AbstractList&amp;lt;E&amp;gt;implements List&amp;lt;E&amp;gt;,">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img-blog.csdn.net/20180509232220757?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTIzNzQy/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2018-06-06T07:09:45.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vector的源码解析">
+<meta name="twitter:description" content="Vector源码解析 Vector概述及继承体系Vector 类可以实现可增长的对象数组。与数组一样，它包含可以使用整数索引进行访问的组件。与新 collection 实现不同，Vector 是同步的。看一下Vector的继承体系：12public class Vector&amp;lt;E&amp;gt;extends AbstractList&amp;lt;E&amp;gt;implements List&amp;lt;E&amp;gt;,">
+<meta name="twitter:image" content="http://img-blog.csdn.net/20180509232220757?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTIzNzQy/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="magic" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/06/Vector的源码解析/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Vector的源码解析 | magic</title>
+  
+	<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/jh0904"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">jh</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/06/Vector的源码解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="magic_jh">
+      <meta itemprop="description" content="一个java菜鸟的个人博客">
+      <meta itemprop="image" content="http://www.jh0904.top/jh/static/1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="magic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vector的源码解析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-06 14:20:17 / 修改时间：15:09:45" itemprop="dateCreated datePublished" datetime="2018-06-06T14:20:17+08:00">2018-06-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Vector源码解析"><a href="#Vector源码解析" class="headerlink" title="Vector源码解析"></a>Vector源码解析</h2><ol>
+<li>Vector概述及继承体系<br>Vector 类可以实现可增长的对象数组。与数组一样，它包含可以使用整数索引进行访问的组件。与新 collection 实现不同，Vector 是同步的。<br>看一下Vector的继承体系：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt;<span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class"><span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="//img-blog.csdn.net/20180509232220757?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTIzNzQy/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>RandomAccess接口是在源码中的注释如下：</p>
+<blockquote>
+<p>Marker interface used by List implementations to indicate that  they<br>support fast (generally constant time) random access.</p>
+</blockquote>
+<p>翻译下就是：这是一个标记性的接口，谁实现了这个接口就表明他具有快速随机访问的能力。</p>
+<ol start="2">
+<li>Vector属性<a id="more"></a>
+capacityIncrement：自动扩容的大小，即当数组满了之后，就添加capacityIncrement个空间装载元素，如果capacityIncrement&lt;=0,则扩容时就扩容到目前Vector容量的两倍。</li>
+</ol>
+<p>elementCount:记录数组中数据的个数。</p>
+<p>elementData:数组，因为Vector底层也是数组存储的，所以用这个来存储数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">int</span> capacityIncrement;  <span class="comment">//扩容大小</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">int</span> elementCount;		<span class="comment">//数组数据条数</span></span><br><span class="line"><span class="keyword">protected</span> Object[] elementData;		<span class="comment">//数组</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>Vector构造方法<br>Vector构造方法有四个构造方法<br>3.1.Vector()<br>构造一个空向量，使其内部数据数组的大小为 10，其标准容量增量为零。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Vector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">this</span>(<span class="number">10</span>);<span class="comment">//这里的this调用的是Vector(int initialCapacity) 方法</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>3.2.Vector(Collection &lt;\?extends E&gt; c)<br>构造一个包含指定 collection 中的元素的向量，这些元素按其 collection 的迭代器返回元素的顺序排列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Vector</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">     elementData = c.toArray();</span><br><span class="line">     elementCount = elementData.length;</span><br><span class="line">     <span class="comment">// c.toArray might (incorrectly) not return Object[] (see 6260652)</span></span><br><span class="line">     <span class="comment">//c.toArray可能（不正确）不返回Object []（参见6260652）</span></span><br><span class="line">     <span class="keyword">if</span> (elementData.getClass() != Object[].class)</span><br><span class="line">         elementData = Arrays.copyOf(elementData, elementCount, Object[].class);</span><br><span class="line">         <span class="comment">//用Arrays.copyOf()方法转换类型。</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>3.3.Vector(int initialCapacity)<br>使用指定的初始容量和等于零的容量增量构造一个空向量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Vector</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(initialCapacity, <span class="number">0</span>);<span class="comment">//这里的this其实调用的是Vector(int initialCapacity, int capacityIncrement)方法</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>3.4.Vector(int initialCapacity, int capacityIncrement)<br>我们从前面知道，无参构造和单参构造本质上都调用的是这个方法。我们来具体了解一下。<br>使用指定的初始容量和容量增量构造一个空的向量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//initialCapacity指的是初始容量。</span></span><br><span class="line"><span class="comment">//capacityIncrement指的是扩容容量。</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Vector</span><span class="params">(<span class="keyword">int</span> initialCapacity, <span class="keyword">int</span> capacityIncrement)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+</span><br><span class="line">                                               initialCapacity);</span><br><span class="line">        <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">        <span class="comment">//从这里可以看出Vector底层也是数组实现的。</span></span><br><span class="line">        <span class="keyword">this</span>.capacityIncrement = capacityIncrement;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Vector常用方法<br><strong>4.1.Vector最初的方法</strong><br><strong>1.addElement(E obj)</strong><br>将指定的组件添加到此向量的末尾，将其大小增加 1。如果向量的大小比容量大，则增大其容量。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">addElement</span><span class="params">(E obj)</span> </span>&#123;</span><br><span class="line">     modCount++;</span><br><span class="line">     ensureCapacityHelper(elementCount + <span class="number">1</span>);</span><br><span class="line">     elementData[elementCount++] = obj;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>从addElement方法中有<font color="red">ensureCapacityHelper(elementCount + 1);</font><br>我们大致可以推测出这一步是用来扩容的。接着看这个方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacityHelper</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// overflow-conscious code检测是否大于数组长度</span></span><br><span class="line">    <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// overflow-conscious code</span></span><br><span class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + ((capacityIncrement &gt; <span class="number">0</span>) ?</span><br><span class="line">                                     capacityIncrement : oldCapacity);</span><br><span class="line">    <span class="comment">//注意：这是和ArrayList不同的地方，这个的自动扩容是直接增加一个oldCapacity，也就是扩大了一倍。</span></span><br><span class="line">    <span class="comment">/*第一个判断是怕扩容的数组长度还是太小，就用minCapacity 来进行对数组的扩张。</span></span><br><span class="line"><span class="comment">第二个判断是如果扩张1倍太大或者是我们所需的空间大小minCapacity太大，则进行Integer.MAX_VALUE来进行扩张。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2.elementAt(int index)</strong><br>返回指定索引处的组件。 其实这个方法就是和我们之前使用的get方法很相似。源码很简单，就是说先进行一个index的有效位检验，如果正确在进入elementData(int index)方法，直接取数组的数据。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">elementAt</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &gt;= elementCount) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException(index + <span class="string">" &gt;= "</span> + elementCount);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> elementData(index);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//---------------------------------------------</span></span><br><span class="line"><span class="function">E <span class="title">elementData</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (E) elementData[index];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3. elements()</strong><br>返回此向量的组件的枚举。返回的 Enumeration 对象将生成此向量中的所有项。生成的第一项为索引 0 处的项，然后是索引 1 处的项，依此类推。<br>其实我们仔细观察就可以发现，这个和我们之前遍历时候用的Iterator很相似。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Enumeration&lt;E&gt; <span class="title">elements</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Enumeration&lt;E&gt;() &#123;</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasMoreElements</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> count &lt; elementCount;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> E <span class="title">nextElement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">synchronized</span> (Vector.<span class="keyword">this</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (count &lt; elementCount) &#123;</span><br><span class="line">                        <span class="keyword">return</span> elementData(count++);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException(<span class="string">"Vector Enumeration"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>Enumeration是一个接口，直接在方法里面实现。从中我们可以看到hasMoreElements（）和nextElement（）方法。下来举个例子来体会一下。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        *  对Vector的一个简单使用</span></span><br><span class="line"><span class="comment">        * */</span></span><br><span class="line">        Vector v=<span class="keyword">new</span> Vector ();</span><br><span class="line">        v.addElement (<span class="string">"hello"</span>);   <span class="comment">//--------------&gt;add()</span></span><br><span class="line">        v.addElement (<span class="string">"world"</span>);</span><br><span class="line">        v.addElement (<span class="string">"java"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println (v.elementAt (<span class="number">1</span>));<span class="comment">//下标从0开始 //--------------&gt;get()</span></span><br><span class="line">        System.out.println (<span class="string">"-----------------"</span>);</span><br><span class="line">        Enumeration elements = v.elements ();   <span class="comment">//--------------&gt;Iterator()</span></span><br><span class="line">        <span class="keyword">while</span> (elements.hasMoreElements ())&#123;    <span class="comment">//--------------&gt;hasNext()</span></span><br><span class="line">            Object o = elements.nextElement (); <span class="comment">//--------------&gt;next()</span></span><br><span class="line">            System.out.println (o);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p> <strong>4.2.Vector JDK1.2之后的方法</strong><br> JDK1.2之后出来的方法，为什么有之前的方法还要再加入新方法？<br> JDK1.2升级的原因无非有三个：1.安全问题2.效率问题3.简化书写<br><strong>1.add</strong><br>添加元素的方法实现比较简单：直接在数组的后一个位置添加即可，不过在添加元素之前需要检查数组中是否已满，如果已满，则扩容。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//添加一个元素到末尾，数组长度+1</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">       modCount++;</span><br><span class="line">       ensureCapacityHelper(elementCount + <span class="number">1</span>);</span><br><span class="line">       elementData[elementCount++] = e;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line">  <span class="comment">//添加一个元素到指定位置。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">       insertElementAt(element, index);</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">/*insertElementAt()方法，先进行有效位检验，然后在使用ensureCapacityHelper更改数组长度+1，在使用</span></span><br><span class="line"><span class="comment">System.arraycopy()方法，这个方法的具体解析，可以去看ArrayList的源码，里面有分析。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">insertElementAt</span><span class="params">(E obj, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">       modCount++;</span><br><span class="line">       <span class="keyword">if</span> (index &gt; elementCount) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException(index</span><br><span class="line">                                                    + <span class="string">" &gt; "</span> + elementCount);</span><br><span class="line">       &#125;</span><br><span class="line">       ensureCapacityHelper(elementCount + <span class="number">1</span>);</span><br><span class="line">       System.arraycopy(elementData, index, elementData, index + <span class="number">1</span>, elementCount - index);</span><br><span class="line">       elementData[index] = obj;</span><br><span class="line">       elementCount++;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">       modCount++;</span><br><span class="line">       Object[] a = c.toArray();</span><br><span class="line">       <span class="keyword">int</span> numNew = a.length;</span><br><span class="line">       ensureCapacityHelper(elementCount + numNew);</span><br><span class="line">       System.arraycopy(a, <span class="number">0</span>, elementData, elementCount, numNew);</span><br><span class="line">       elementCount += numNew;</span><br><span class="line">       <span class="keyword">return</span> numNew != <span class="number">0</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2.get</strong><br>返回向量中指定位置的元素。<br>先进行有效位检验，直接从数组取相应下标元素。类似于elementAt（int index）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (index &gt;= elementCount)</span><br><span class="line">         <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException(index);</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> elementData(index);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3. set</strong><br>用指定的元素替换此向量中指定位置处的元素。 Vector底层使用的是数组，所以这就相当于对数组的操作。先进行有效位检验，然后把指定下标的元素改成element。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &gt;= elementCount)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException(index);</span><br><span class="line"></span><br><span class="line">        E oldValue = elementData(index);</span><br><span class="line">        elementData[index] = element;</span><br><span class="line">        <span class="keyword">return</span> oldValue;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>4.remove</strong></p>
+<p>remove方法其实和ArrayList里面的方法区别不大。我们主要来看两个方法就可以了。<br>    4.4.1.remove(int index)<br>    先进行有效位检测，然后取出index下标的元素，在计算index元素之后的长度，最后使用 System.arraycopy()直接把index位置跳过，再把elementData[]最后一位元素置为null,让垃圾回收器将其回收。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">       modCount++;</span><br><span class="line">       <span class="keyword">if</span> (index &gt;= elementCount)</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> ArrayIndexOutOfBoundsException(index);</span><br><span class="line">       E oldValue = elementData(index);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">int</span> numMoved = elementCount - index - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">           System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index,</span><br><span class="line">                            numMoved);</span><br><span class="line">       elementData[--elementCount] = <span class="keyword">null</span>; <span class="comment">// Let gc do its work</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> oldValue;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<pre><code>4.4.2.remove(Object o)
+</code></pre><p>删除指定元素。其实这个也特别简单，remove(Object o)底层调用了removeElement(o)方法。removeElement(o)的实现就是先把当前元素的位置下标取出来，然后有了下标就可以使用remove(int index)方法了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> removeElement(o);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//--------------------------------</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">removeElement</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        modCount++;</span><br><span class="line">        <span class="keyword">int</span> i = indexOf(obj);</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            removeElementAt(i);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="5">
+<li>总结</li>
+</ol>
+<p>Vector里面是基于数组来实现的需要注意的是：Vector是线程安全的，因此，在多线程并发中是不需要使用额外同步的，而ArrayList实现基本与Vector一样，但是区别是：ArrayList是线程不安全的，在多线程并发时，需要我们进行额外的同步。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/06/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://www.jh0904.top/jh/static/1.png"
+                alt="magic_jh" />
+            
+              <p class="site-author-name" itemprop="name">magic_jh</p>
+              <p class="site-description motion-element" itemprop="description">一个java菜鸟的个人博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/atom.xml" title="Feed" target="_blank">Feed</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/sitemap.xml" title="SiteMap" target="_blank">SiteMap</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vector源码解析"><span class="nav-number">1.</span> <span class="nav-text">Vector源码解析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">magic_jh</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
