@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/06/07/hello-world/</loc>
+    
+    <lastmod>2018-06-07T05:55:16.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/06/06/Vector%E7%9A%84%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2018-06-07T05:50:27.934Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2018-06-06T12:36:01.501Z</lastmod>
@@ -26,20 +40,6 @@
     <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2018-06-06T10:37:17.016Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/06/06/Vector%E7%9A%84%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
-    
-    <lastmod>2018-06-06T07:09:45.017Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/06/06/hello-world/</loc>
-    
-    <lastmod>2018-06-06T07:09:29.516Z</lastmod>
     
   </url>
   
