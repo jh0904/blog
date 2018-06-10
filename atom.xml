@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-06-08T05:38:03.193Z</updated>
+  <updated>2018-06-10T01:54:46.693Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql必知必会（连接，查询，排序）</title>
+    <link href="http://yoursite.com/2018/06/10/Mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%EF%BC%88%E8%BF%9E%E6%8E%A5%EF%BC%8C%E6%A3%80%E7%B4%A2%EF%BC%8C%E6%8E%92%E5%BA%8F%EF%BC%89/"/>
+    <id>http://yoursite.com/2018/06/10/Mysql必知必会（连接，检索，排序）/</id>
+    <published>2018-06-10T02:00:00.000Z</published>
+    <updated>2018-06-10T01:54:46.693Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Mysql必知必会（连接，检索，排序）"><a href="#Mysql必知必会（连接，检索，排序）" class="headerlink" title="Mysql必知必会（连接，检索，排序）"></a>Mysql必知必会（连接，检索，排序）</h1><p>分别对应Mysql必知必会3,4,5章节的内容。下面做简单的示例。</p><h2 id="连接数据库和进入"><a href="#连接数据库和进入" class="headerlink" title="连接数据库和进入"></a>连接数据库和进入</h2><ul><li>连接数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql -u ben   </span><br><span class="line">//以ben用户进入数据库  </span><br><span class="line">mysql -uroot -proot -h localhost -P 3306    </span><br><span class="line">//以root用户，root密码，本地ip，端口号3306进入mysql。</span><br><span class="line">mysql -uroot -proot   </span><br><span class="line">//默认本地，3306登录。</span><br></pre></td></tr></table></figure></li></ul><p>登录成功页面：</p><p><img src="http://i2.bvimg.com/648776/9a80d0733de45792.png" alt="Markdown"></p><p>选择数据库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASES;</span><br><span class="line">//显示所有表空间</span><br></pre></td></tr></table></figure><p><img src="image/aa.png" alt="Markdown"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">USE jh</span><br><span class="line">//使用jh数据库表空间</span><br></pre></td></tr></table></figure><p><img src="image/cc.png" alt="Markdown"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show tables;</span><br><span class="line">//显示jh数据库中有哪些表</span><br></pre></td></tr></table></figure></p><p><img src="image/assda.png" alt="Markdown"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Mysql必知必会（连接，检索，排序）&quot;&gt;&lt;a href=&quot;#Mysql必知必会（连接，检索，排序）&quot; class=&quot;headerlink&quot; title=&quot;Mysql必知必会（连接，检索，排序）&quot;&gt;&lt;/a&gt;Mysql必知必会（连接，检索，排序）&lt;/h1&gt;&lt;p&gt;分别
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>了解SQL</title>
+    <link href="http://yoursite.com/2018/06/10/Mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%EF%BC%881,2%E7%AB%A0%EF%BC%89/"/>
+    <id>http://yoursite.com/2018/06/10/Mysql必知必会（1,2章）/</id>
+    <published>2018-06-10T01:48:00.000Z</published>
+    <updated>2018-06-10T01:48:59.169Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="了解SQL"><a href="#了解SQL" class="headerlink" title="了解SQL"></a>了解SQL</h1><h2 id="1-DBMS数据库管理系统"><a href="#1-DBMS数据库管理系统" class="headerlink" title="1.DBMS数据库管理系统"></a>1.DBMS数据库管理系统</h2><ul><li><strong>数据库（database）</strong></li></ul><p>保存有组织的数据容器。DBMS是操纵和创建数据库的软件，不能直接访问数据库，是通过DBMS去访问。</p><ul><li><strong>表（table）</strong></li></ul><p>某种特定类型数据的结构化清单。一个结构化的文件，用来存储某种特定类型的数据。</p><ul><li><strong>模式（schema）</strong></li></ul><p>关于数据库和表的布局以及特征的信息</p><ul><li><strong>列（column）</strong></li></ul><p>表中的一个字段。所有的表都是由多个或一个列组成的。可以把它想象成一个网格，网格中每个列存储着一条特定的信息。</p><ul><li><strong>数据类型（datatype）</strong></li></ul><p>所容许的数据类型，它限制列中存储的数据。</p><ul><li><strong>行（row）</strong></li></ul><p>表中的一个记录。表中的行数也为记录的总数。</p><ul><li><strong>主键（primary key）</strong></li></ul><p>一列（或一组列），其值能够唯一区分表中的每个行。</p><p>++主键的规范++：</p><blockquote><p>任意两行都不能具有相同的主键值。<br>每个行都必须具有一个主键值（主键不允许为NULL）。</p></blockquote><h2 id="2-什么是SQL"><a href="#2-什么是SQL" class="headerlink" title="2.什么是SQL?"></a>2.什么是SQL?</h2><p>SQL是结构化查询语言（Structured Query Language），是一种特殊目的的编程语言，是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统；同时也是数据库脚本文件的扩展名。<br>SQL的优点：</p><ul><li>SQL不是某个特定的数据库专用的语言，几乎所有的DBMS都支持SQL。</li><li>SQL简单易学，语句描述性很强。</li><li>SQL看上去很简单，但是是一个强有力的语言，可以进行很复杂的数据库操作。</li></ul><h2 id="3-MySQL简述"><a href="#3-MySQL简述" class="headerlink" title="3.MySQL简述"></a>3.MySQL简述</h2><p> MySQL是一个小型关系型数据库管理系统，开发者为瑞典MySQL AB公司，现在已经被Sun公司收购，支持FreeBSD、Linux、MAC、Windows等多种操作系统与其他的大型数据库例如Oracle、DB2、SQL Server等相比功能稍弱一些。其特点有：</p><p>1、可以处理拥有上千万条记录的大型数据；</p><p>2、支持常见的SQL语句规范；</p><p>3、可移植行高，安装简单小巧；</p><p>4、良好的运行效率，有丰富信息的网络支持；</p><p>5、调试、管理，优化简单（相对其他大型数据库）。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;了解SQL&quot;&gt;&lt;a href=&quot;#了解SQL&quot; class=&quot;headerlink&quot; title=&quot;了解SQL&quot;&gt;&lt;/a&gt;了解SQL&lt;/h1&gt;&lt;h2 id=&quot;1-DBMS数据库管理系统&quot;&gt;&lt;a href=&quot;#1-DBMS数据库管理系统&quot; class=&quot;header
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>HashMap的源码解析</title>
