@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/06/22/NIO/</loc>
+    
+    <lastmod>2018-06-22T15:47:59.930Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/06/07/%E5%85%B3%E4%BA%8EString%E7%B1%BB%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
+    
+    <lastmod>2018-06-22T15:25:07.765Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/06/10/Mysql%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%EF%BC%88%E8%BF%9E%E6%8E%A5%EF%BC%8C%E6%A3%80%E7%B4%A2%EF%BC%8C%E6%8E%92%E5%BA%8F%EF%BC%89/</loc>
     
     <lastmod>2018-06-10T04:24:26.936Z</lastmod>
@@ -26,13 +40,6 @@
     <loc>http://yoursite.com/2018/06/06/Vector%E7%9A%84%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
     
     <lastmod>2018-06-08T05:32:35.643Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/06/07/%E5%85%B3%E4%BA%8EString%E7%B1%BB%E7%9A%84%E7%90%86%E8%A7%A3/</loc>
-    
-    <lastmod>2018-06-07T07:13:27.535Z</lastmod>
     
   </url>
   
