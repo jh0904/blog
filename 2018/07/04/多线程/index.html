@@ -115,17 +115,18 @@
 
 
 
-  <meta name="description" content="一个java菜鸟的个人博客">
-<meta name="keywords" content="个人博客,java,web">
-<meta property="og:type" content="website">
-<meta property="og:title" content="magic">
-<meta property="og:url" content="http://yoursite.com/tags/多线程/index.html">
+  <meta name="description" content="多线程1:多线程(理解) 多线程：一个应用程序有多条执行路径进程：正在执行的应用程序 线程：进程的执行单元，执行路径 单线程：一个应用程序只有一条执行路径 多线程：一个应用程序有多条执行路径 **多进程的意义?**     提高CPU的使用率 **多线程的意义?**     提高应用程序的使用率  Java程序的运行原理及JVM的启动是多线程的吗? A:Java命令去启动JVM，JVM会启动一个进">
+<meta name="keywords" content="多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程">
+<meta property="og:url" content="http://yoursite.com/2018/07/04/多线程/index.html">
 <meta property="og:site_name" content="magic">
-<meta property="og:description" content="一个java菜鸟的个人博客">
+<meta property="og:description" content="多线程1:多线程(理解) 多线程：一个应用程序有多条执行路径进程：正在执行的应用程序 线程：进程的执行单元，执行路径 单线程：一个应用程序只有一条执行路径 多线程：一个应用程序有多条执行路径 **多进程的意义?**     提高CPU的使用率 **多线程的意义?**     提高应用程序的使用率  Java程序的运行原理及JVM的启动是多线程的吗? A:Java命令去启动JVM，JVM会启动一个进">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-04T02:43:21.316Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="magic">
-<meta name="twitter:description" content="一个java菜鸟的个人博客">
+<meta name="twitter:title" content="多线程">
+<meta name="twitter:description" content="多线程1:多线程(理解) 多线程：一个应用程序有多条执行路径进程：正在执行的应用程序 线程：进程的执行单元，执行路径 单线程：一个应用程序只有一条执行路径 多线程：一个应用程序有多条执行路径 **多进程的意义?**     提高CPU的使用率 **多线程的意义?**     提高应用程序的使用率  Java程序的运行原理及JVM的启动是多线程的吗? A:Java命令去启动JVM，JVM会启动一个进">
 
 
 
@@ -134,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/多线程/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/04/多线程/"/>
 
 
 
@@ -144,7 +145,7 @@
   };
 </script>
 
-  <title>标签: 多线程 | magic</title>
+  <title>多线程 | magic</title>
   
 
 
@@ -190,7 +191,7 @@
   
     
   
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/jh0904"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,7 +240,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
   </li>
@@ -283,28 +284,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -353,86 +332,310 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>多线程<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/多线程/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="magic_jh">
+      <meta itemprop="description" content="一个java菜鸟的个人博客">
+      <meta itemprop="image" content="http://www.jh0904.top/jh/static/1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="magic">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/07/04/多线程/" itemprop="url">
-              
-                <span itemprop="name">多线程</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">多线程
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-04T10:42:32+08:00"
-              content="2018-07-04" >
-          07-04
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-04 10:42:32 / 修改时间：10:43:21" itemprop="dateCreated datePublished" datetime="2018-07-04T10:42:32+08:00">2018-07-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/04/多线程面试题/" itemprop="url">
-              
-                <span itemprop="name">多线程面试题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-04T00:03:12+08:00"
-              content="2018-07-04" >
-          07-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="1-多线程-理解"><a href="#1-多线程-理解" class="headerlink" title="1:多线程(理解)"></a>1:多线程(理解)</h3><ol>
+<li>多线程：一个应用程序有多条执行路径<pre><code>进程：正在执行的应用程序
+线程：进程的执行单元，执行路径
+单线程：一个应用程序只有一条执行路径
+多线程：一个应用程序有多条执行路径
+**多进程的意义?**
+    提高CPU的使用率
+**多线程的意义?**
+    提高应用程序的使用率
+</code></pre></li>
+<li><p><strong>Java程序的运行原理及JVM的启动是多线程的吗</strong>?</p>
+<p>A:Java命令去启动JVM，JVM会启动一个进程，该进程会启动一个主线程。</p>
+<p>B:JVM的启动是多线程的，因为它最低有两个线程启动了，主线程和垃圾回收线程。</p>
+</li>
+<li><p><strong>多线程的实现方案(自己补齐步骤及代码    掌握)</strong></p>
+<pre><code>A:继承Thread类
+B:实现Runnable接口
+</code></pre></li>
+<li><strong>线程的调度和优先级问题</strong><pre><code>A:线程的调度
+    a:分时调度
+    b:抢占式调度 (Java采用的是该调度方式)
+B:获取和设置线程优先级
+    a:默认是5
+    b:范围是1-10
+</code></pre></li>
+<li><strong>线程的控制(常见方法)</strong><pre><code>A:休眠线程
+B:加入线程
+C:礼让线程
+D:后台线程
+E:终止线程(掌握)
+</code></pre></li>
+<li><strong>线程的生命周期(参照    线程生命周期图解.bmp)</strong><pre><code>A:新建
+B:就绪
+C:运行
+D:阻塞
+E:死亡
+</code></pre></li>
+<li><strong>电影院卖票程序的实现</strong><pre><code>A:继承Thread类
+B:实现Runnable接口
+</code></pre></li>
+<li><strong>电影院卖票程序出问题</strong><pre><code>A:为了更符合真实的场景，加入了休眠100毫秒。
+B:卖票问题
+    a:同票多次
+    b:负数票
+</code></pre></li>
+<li><strong>多线程安全问题的原因(也是我们以后判断一个程序是否有线程安全问题的依据)</strong><pre><code>A:是否有多线程环境
+B:是否有共享数据
+C:是否有多条语句操作共享数据
+</code></pre></li>
+<li><p><strong>同步解决线程安全问题</strong></p>
+<p>A:同步代码块</p>
+<pre><code>synchronized(对象) {
+    需要被同步的代码;
+}
+这里的锁对象可以是任意对象。
+</code></pre><p>B:同步方法</p>
+<pre><code>把同步加在方法上。
+这里的锁对象是this
+</code></pre><p>C:静态同步方法</p>
+<pre><code>把同步加在方法上。
+这里的锁对象是当前类的字节码文件对象
+</code></pre></li>
+<li><strong>回顾以前的线程安全的类</strong><pre><code>A:StringBuffer
+B:Vector
+C:Hashtable
+D:如何把一个线程不安全的集合类变成一个线程安全的集合类
+    用Collections工具类的方法即可。
+</code></pre></li>
+<li><strong>JDK5以后的针对线程的锁定操作和释放操作</strong><pre><code>Lock锁
+</code></pre></li>
+<li><p><strong>死锁问题的描述和代码体现</strong></p>
+</li>
+<li><p><strong>生产者和消费者多线程体现(线程间通信问题)</strong></p>
+<pre><code>以学生作为资源来实现的
+</code></pre><p>资源类：Student</p>
+<pre><code>设置数据类：SetThread(生产者)
+获取数据类：GetThread(消费者)
+测试类：StudentDemo
+</code></pre><p>代码：</p>
+<pre><code>A:最基本的版本，只有一个数据。
+B:改进版本，给出了不同的数据，并加入了同步机制
+C:等待唤醒机制改进该程序，让数据能够实现依次的出现
+    wait()
+    notify()
+    notifyAll() (多生产多消费)
+D:等待唤醒机制的代码优化。把数据及操作都写在了资源类中
+</code></pre></li>
+<li><strong>线程组</strong></li>
+<li><strong>线程池</strong></li>
+<li><strong>多线程实现的第三种方案</strong></li>
+</ol>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感觉不错，打个赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wx.png" alt="magic_jh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="magic_jh 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/多线程/" rel="tag"><i class="fa fa-tag"></i> 多线程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/04/多线程面试题/" rel="next" title="多线程面试题">
+                <i class="fa fa-chevron-left"></i> 多线程面试题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -453,8 +656,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -581,6 +793,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">1.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-多线程-理解"><span class="nav-number">1.1.</span> <span class="nav-text">1:多线程(理解)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -732,6 +960,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 

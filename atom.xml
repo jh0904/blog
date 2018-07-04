@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-03T16:04:07.763Z</updated>
+  <updated>2018-07-04T02:43:21.316Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多线程</title>
+    <link href="http://yoursite.com/2018/07/04/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    <id>http://yoursite.com/2018/07/04/多线程/</id>
+    <published>2018-07-04T02:42:32.000Z</published>
+    <updated>2018-07-04T02:43:21.316Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="1-多线程-理解"><a href="#1-多线程-理解" class="headerlink" title="1:多线程(理解)"></a>1:多线程(理解)</h3><ol><li>多线程：一个应用程序有多条执行路径<pre><code>进程：正在执行的应用程序线程：进程的执行单元，执行路径单线程：一个应用程序只有一条执行路径多线程：一个应用程序有多条执行路径**多进程的意义?**    提高CPU的使用率**多线程的意义?**    提高应用程序的使用率</code></pre></li><li><p><strong>Java程序的运行原理及JVM的启动是多线程的吗</strong>?</p><p>A:Java命令去启动JVM，JVM会启动一个进程，该进程会启动一个主线程。</p><p>B:JVM的启动是多线程的，因为它最低有两个线程启动了，主线程和垃圾回收线程。</p></li><li><p><strong>多线程的实现方案(自己补齐步骤及代码    掌握)</strong></p><pre><code>A:继承Thread类B:实现Runnable接口</code></pre></li><li><strong>线程的调度和优先级问题</strong><pre><code>A:线程的调度    a:分时调度    b:抢占式调度 (Java采用的是该调度方式)B:获取和设置线程优先级    a:默认是5    b:范围是1-10</code></pre></li><li><strong>线程的控制(常见方法)</strong><pre><code>A:休眠线程B:加入线程C:礼让线程D:后台线程E:终止线程(掌握)</code></pre></li><li><strong>线程的生命周期(参照    线程生命周期图解.bmp)</strong><pre><code>A:新建B:就绪C:运行D:阻塞E:死亡</code></pre></li><li><strong>电影院卖票程序的实现</strong><pre><code>A:继承Thread类B:实现Runnable接口</code></pre></li><li><strong>电影院卖票程序出问题</strong><pre><code>A:为了更符合真实的场景，加入了休眠100毫秒。B:卖票问题    a:同票多次    b:负数票</code></pre></li><li><strong>多线程安全问题的原因(也是我们以后判断一个程序是否有线程安全问题的依据)</strong><pre><code>A:是否有多线程环境B:是否有共享数据C:是否有多条语句操作共享数据</code></pre></li><li><p><strong>同步解决线程安全问题</strong></p><p>A:同步代码块</p><pre><code>synchronized(对象) {    需要被同步的代码;}这里的锁对象可以是任意对象。</code></pre><p>B:同步方法</p><pre><code>把同步加在方法上。这里的锁对象是this</code></pre><p>C:静态同步方法</p><pre><code>把同步加在方法上。这里的锁对象是当前类的字节码文件对象</code></pre></li><li><strong>回顾以前的线程安全的类</strong><pre><code>A:StringBufferB:VectorC:HashtableD:如何把一个线程不安全的集合类变成一个线程安全的集合类    用Collections工具类的方法即可。</code></pre></li><li><strong>JDK5以后的针对线程的锁定操作和释放操作</strong><pre><code>Lock锁</code></pre></li><li><p><strong>死锁问题的描述和代码体现</strong></p></li><li><p><strong>生产者和消费者多线程体现(线程间通信问题)</strong></p><pre><code>以学生作为资源来实现的</code></pre><p>资源类：Student</p><pre><code>设置数据类：SetThread(生产者)获取数据类：GetThread(消费者)测试类：StudentDemo</code></pre><p>代码：</p><pre><code>A:最基本的版本，只有一个数据。B:改进版本，给出了不同的数据，并加入了同步机制C:等待唤醒机制改进该程序，让数据能够实现依次的出现    wait()    notify()    notifyAll() (多生产多消费)D:等待唤醒机制的代码优化。把数据及操作都写在了资源类中</code></pre></li><li><strong>线程组</strong></li><li><strong>线程池</strong></li><li><strong>多线程实现的第三种方案</strong></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;多线程&quot;&gt;&lt;a href=&quot;#多线程&quot; class=&quot;headerlink&quot; title=&quot;多线程&quot;&gt;&lt;/a&gt;多线程&lt;/h2&gt;&lt;h3 id=&quot;1-多线程-理解&quot;&gt;&lt;a href=&quot;#1-多线程-理解&quot; class=&quot;headerlink&quot; title=&quot;1:多线程
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="多线程" scheme="http://yoursite.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>多线程面试题</title>
