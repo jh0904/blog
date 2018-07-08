@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-04T02:43:21.316Z</updated>
+  <updated>2018-07-08T06:12:04.086Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Exception与Error的区别</title>
+    <link href="http://yoursite.com/2018/07/08/Exception%E4%B8%8EError%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2018/07/08/Exception与Error的区别/</id>
+    <published>2018-07-08T06:10:27.000Z</published>
+    <updated>2018-07-08T06:12:04.086Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Exception与Error的区别"><a href="#Exception与Error的区别" class="headerlink" title="Exception与Error的区别"></a>Exception与Error的区别</h1><blockquote><p>[name=magic]</p></blockquote><h2 id="标准回答："><a href="#标准回答：" class="headerlink" title="标准回答："></a>标准回答：</h2><p>Exception 和 Error 都是继承了 Throwable 类，在 Java 中只有 Throwable 类型的实例才可以被抛出（throw）或者捕获（catch），它是异常处理机制的基本组成类型。</p><p>Exception 和 Error 体现了 Java 平台设计者对不同异常情况的分类。Exception 是程序正常运行中，可以预料的意外情况，可能并且应该被捕获，进行相应处理。</p><h3 id="Error"><a href="#Error" class="headerlink" title="Error"></a><strong>Error</strong></h3><p>是指在正常情况下，不大可能出现的情况，绝大部分的 Error 都会导致程序（比如 JVM 自身）处于非正常的、不可恢复状态。既然是非正常情况，所以不便于也不需要捕获，常见的比如 OutOfMemoryError 之类，都是 Error 的子类。</p><h3 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a><strong>Exception</strong></h3><p>又分为可检查（checked）异常和不检查（unchecked）异常</p><p>可检查异常在源代码里必须显式地进行捕获处理，这是编译期检查的一部分。前面我介绍的不可查的 Error，是 Throwable 不是 Exception。</p><p>不检查异常就是所谓的运行时异常，类似 NullPointerException、ArrayIndexOutOfBoundsException 之类，通常是可以编码避免的逻辑错误，具体根据需要来判断是否需要捕获，并不会在编译期强制要求。</p><h2 id="考点分析"><a href="#考点分析" class="headerlink" title="考点分析"></a>考点分析</h2><p>我们还需要注意两个方面的问题。</p><h3 id="一、理解Throwable、Exception、Error的设计和分类"><a href="#一、理解Throwable、Exception、Error的设计和分类" class="headerlink" title="一、理解Throwable、Exception、Error的设计和分类"></a>一、理解Throwable、Exception、Error的设计和分类</h3><p>下面是一个类的结构图，有助于我们去理解和掌握下面的子类</p><p><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-8/36114315.jpg" alt="理解Throwable"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Throwable</span><br><span class="line">|--Error严重问题，我们不处理。</span><br><span class="line">|--Exception</span><br><span class="line">|--RuntimeException运行期异常，我们需要修正代码</span><br><span class="line">|--非RuntimeException 编译期异常，必须处理的，否则程序编译不通过</span><br></pre></td></tr></table></figure></p><p>其中需要重点理解的是NoClassDefFoundError和NoClassFoundException的区别。</p><blockquote><p><strong>NoClassDefFoundError</strong>出现的时机是当你真正使用这个类的信息的时候，当class-path上没有这个类的时候会出现.<br>如果jvm或者一个ClassLoader的实例尝试去载入一个class的定义内容（普通方法的调用或者用new去创建这个class的实例）但是没有找到这个class的信息。这个是无法捕获的。<br><strong>ClassNotFoundException</strong>出现的时机就是一些反射操作，通过名称在Runtime去动态加载这个类的信息。这个可以抛出异常。</p></blockquote><h3 id="二、掌握java语言中操作Throwable的元素和实践。"><a href="#二、掌握java语言中操作Throwable的元素和实践。" class="headerlink" title="二、掌握java语言中操作Throwable的元素和实践。"></a>二、掌握java语言中操作Throwable的元素和实践。</h3><p>比如try-catch-finally块。throw、throws关键字等。</p><p>抛出异常的一些注意事项：</p><blockquote><p>A:子类重写父类方法时，子类的方法必须抛出相同的异常或父类异常的子类。(父亲坏了,儿子不能比父亲更坏)<br>B:如果父类抛出了多个异常,子类重写父类时,只能抛出相同的异常或者是他的子集,子类不能抛出父类没有的异常<br>C:如果被重写的方法没有异常抛出,那么子类的方法绝对不可以抛出异常,如果子类方法内有异常发生,那么子类只能try,不能throws</p></blockquote><p><strong>编译期异常和运行期异常的区别?</strong><br>            编译期异常 必须要处理的，否则编译不通过<br>            运行期异常 可以不处理，也可以处理</p><p><strong>throw、throws的区别？</strong><br><strong>throw:</strong><br>在方法体中,后面跟的是异常对象名,并且只能抛出一个异常对象名。表示抛出异常，由方法体内的语句进行处理。<br>throw抛出的是一个异常对象，说明这里肯定有一个异常产生了<br><strong>throws:</strong><br>在方法声明后面,后面跟的是异常的类名,可以抛出多个异常，用”，”隔开。表示抛出异常，由方法调用者进行处理。<br>throws是声明方法有异常，是一种可能性，这个异常并不一定会产生</p><hr><p>简单说一下try-catch-finally的一些注意事项和面试题：</p><ol><li><p>finally用于释放资源，它的代码永远会执行。特殊情况：在执行到finally之前jvm退出了，比如System.exit(0)。</p></li><li><p>如果catch里面有return语句，请问finally里面的代码还会执行吗<br>如果会，请问是在return前，还是return后。<br>会。前。<br>准确的说，应该是在中间。<br>具体可以仔细体会下面的代码，思考一下a的值最后是多少？</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinallyDemo2</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">System.out.println(getInt());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getInt</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">System.out.println(a / <span class="number">0</span>);</span><br><span class="line">a = <span class="number">20</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (ArithmeticException e) &#123;</span><br><span class="line">a = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">return</span> a;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * return a在程序执行到这一步的时候，这里不是return a而是return 30;这个返回路径就形成了。</span></span><br><span class="line"><span class="comment"> * 但是呢，它发现后面还有finally，所以继续执行finally的内容，a=40</span></span><br><span class="line"><span class="comment"> * 再次回到以前的返回路径，继续走return 30;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">a = <span class="number">40</span>;</span><br><span class="line"><span class="keyword">return</span> a;<span class="comment">//如果这样结果就是40了。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// return a;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><p>其中在JDK1.7中有一个新特性：<strong>try-with-resources</strong><br>try-with-resources语句是一个声明一个或多个资源的try语句。一个资源作为一个对象，必须在程序结束之后关闭。try-with-resources语句确保在语句的最后每个资源都被关闭，任何实现了java.lang.AutoCloseable和java.io.Closeable的对象都可以使用try-with-resource来实现异常处理和关闭资源。<br>具体使用见下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path))) &#123;</span><br><span class="line"><span class="keyword">return</span> br.readLine();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>把需要关闭的对象写在括号中，其中要关闭的对象必须实现java.lang.AutoCloseable和java.io.Closeable。</p><hr><blockquote><p>最后，衷心感谢杨晓峰老师的讲解。很清晰和透彻，也希望大家可以支持一下。<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-8/91450487.jpg" alt=""></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Exception与Error的区别&quot;&gt;&lt;a href=&quot;#Exception与Error的区别&quot; class=&quot;headerlink&quot; title=&quot;Exception与Error的区别&quot;&gt;&lt;/a&gt;Exception与Error的区别&lt;/h1&gt;&lt;blockquo
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>多线程</title>
@@ -212,9 +239,9 @@
       <category term="java" scheme="http://yoursite.com/categories/java/"/>
     
     
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
       <category term="导航" scheme="http://yoursite.com/tags/%E5%AF%BC%E8%88%AA/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
