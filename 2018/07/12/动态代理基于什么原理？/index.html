@@ -115,19 +115,19 @@
 
 
 
-  <meta name="description" content="[TOC]   爱女票，爱Java❤❤❤   概述反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。 动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用">
+  <meta name="description" content="爱女票，爱Java❤❤❤   概述反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。 动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用来包装 RPC">
 <meta name="keywords" content="面试,java基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态代理基于什么原理？">
 <meta property="og:url" content="http://yoursite.com/2018/07/12/动态代理基于什么原理？/index.html">
 <meta property="og:site_name" content="magic">
-<meta property="og:description" content="[TOC]   爱女票，爱Java❤❤❤   概述反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。 动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用">
+<meta property="og:description" content="爱女票，爱Java❤❤❤   概述反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。 动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用来包装 RPC">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-12/37239512.jpg">
-<meta property="og:updated_time" content="2018-07-12T03:09:46.311Z">
+<meta property="og:updated_time" content="2018-07-12T03:12:02.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态代理基于什么原理？">
-<meta name="twitter:description" content="[TOC]   爱女票，爱Java❤❤❤   概述反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。 动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用">
+<meta name="twitter:description" content="爱女票，爱Java❤❤❤   概述反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。 动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用来包装 RPC">
 <meta name="twitter:image" content="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-12/37239512.jpg">
 
 
@@ -392,7 +392,7 @@
                 
               
 
-              <time title="创建时间：2018-07-12 11:08:48 / 修改时间：11:09:46" itemprop="dateCreated datePublished" datetime="2018-07-12T11:08:48+08:00">2018-07-12</time>
+              <time title="创建时间：2018-07-12 11:08:48 / 修改时间：11:12:02" itemprop="dateCreated datePublished" datetime="2018-07-12T11:08:48+08:00">2018-07-12</time>
             
 
             
@@ -449,9 +449,6 @@
 
       
         <blockquote>
-<p>[TOC]</p>
-</blockquote>
-<blockquote>
 <font style="color:blue">爱女票，爱Java❤❤❤ </font>
 </blockquote>
 <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。</p>
@@ -469,14 +466,8 @@
 </blockquote>
 <h4 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h4><p>代理可以看做对调用目标的一个包装，这样我们可以对目标代码的调用不是直接发生的，而是通过代理完成的。<br>动态代理的作用可以用来做AOP。可以去做一些重复的工作（比如权限呢检验，日志记录），用动态代理去抽取出来。增强代码的易用性。</p>
 <p>具体介绍一下java里面内置的Proxy类的一些简单操作：<br>在Java中java.lang.reflect包下提供了一个Proxy类和一个InvocationHandler接口，通过使用这个类和接口就可以生成动态代理对象。JDK提供的代理只能针对接口做代理。我们有更强大的代理cglib。</p>
-<p>Proxy类中的方法创建动态代理类对象</p>
-<blockquote>
-<p>public static Object newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</p>
-</blockquote>
-<p>最终会调用InvocationHandler的方法</p>
-<blockquote>
-<p>InvocationHandler Object invoke(Object proxy,Method method,Object[] args)</p>
-</blockquote>
+<p>Proxy类中的方法创建动态代理类对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static Object newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span><br></pre></td></tr></table></figure></p>
+<p>最终会调用InvocationHandler的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InvocationHandler Object invoke(Object proxy,Method method,Object[] args)</span><br></pre></td></tr></table></figure></p>
 <p>动态代理的具体实现可以参考我的GitHub：<a href="https://github.com/jh0904/GitTest/tree/master/GitTest1/src/cn/reflect/proxy" target="_blank" rel="noopener">Proxy</a>。</p>
 <p>cgilb实现动态代理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待续...</span><br></pre></td></tr></table></figure></p>
 <p>动态代理的使用场景：<br>AOP 通过（动态）代理机制可以让开发者从这些繁琐事项中抽身出来，大幅度提高了代码的抽象程度和复用度。从逻辑上来说，我们在软件设计和实现中的类似代理，如 Facade、Observer 等很多设计目的，都可以通过动态代理优雅地实现。<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-12/37239512.jpg" alt=""></p>
@@ -566,6 +557,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/07/13/int和Integer的区别？Integer的值缓存范围？/" rel="prev" title="int和Integer的区别？Integer的值缓存范围？">
+                int和Integer的区别？Integer的值缓存范围？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -645,7 +640,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
