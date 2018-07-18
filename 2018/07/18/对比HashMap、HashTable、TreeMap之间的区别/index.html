@@ -115,17 +115,20 @@
 
 
 
-  <meta name="description" content="一个java菜鸟的个人博客">
-<meta name="keywords" content="个人博客,java,web">
-<meta property="og:type" content="website">
-<meta property="og:title" content="magic">
-<meta property="og:url" content="http://yoursite.com/tags/多线程/index.html">
+  <meta name="description" content="爱女票，爱Java❤❤❤   Hashtable、HashMap、TreeMap 都是最常见的一些 Map 实现，是以键值对的形式存储和操作数据的容器类型。 Hashtable 是早期 Java 类库提供的一个哈希表实现，本身是同步的，不支持 null 键和值，由于同步导致的性能开销，所以已经很少被推荐使用。 HashMap 是应用更加广泛的哈希表实现，行为上大致上与 HashTable 一致，">
+<meta name="keywords" content="面试,java基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对比HashMap、HashTable、TreeMap之间的区别">
+<meta property="og:url" content="http://yoursite.com/2018/07/18/对比HashMap、HashTable、TreeMap之间的区别/index.html">
 <meta property="og:site_name" content="magic">
-<meta property="og:description" content="一个java菜鸟的个人博客">
+<meta property="og:description" content="爱女票，爱Java❤❤❤   Hashtable、HashMap、TreeMap 都是最常见的一些 Map 实现，是以键值对的形式存储和操作数据的容器类型。 Hashtable 是早期 Java 类库提供的一个哈希表实现，本身是同步的，不支持 null 键和值，由于同步导致的性能开销，所以已经很少被推荐使用。 HashMap 是应用更加广泛的哈希表实现，行为上大致上与 HashTable 一致，">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-18/32923831.jpg">
+<meta property="og:updated_time" content="2018-07-18T13:42:57.844Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="magic">
-<meta name="twitter:description" content="一个java菜鸟的个人博客">
+<meta name="twitter:title" content="对比HashMap、HashTable、TreeMap之间的区别">
+<meta name="twitter:description" content="爱女票，爱Java❤❤❤   Hashtable、HashMap、TreeMap 都是最常见的一些 Map 实现，是以键值对的形式存储和操作数据的容器类型。 Hashtable 是早期 Java 类库提供的一个哈希表实现，本身是同步的，不支持 null 键和值，由于同步导致的性能开销，所以已经很少被推荐使用。 HashMap 是应用更加广泛的哈希表实现，行为上大致上与 HashTable 一致，">
+<meta name="twitter:image" content="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-18/32923831.jpg">
 
 
 
@@ -134,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/多线程/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/18/对比HashMap、HashTable、TreeMap之间的区别/"/>
 
 
 
@@ -144,7 +147,7 @@
   };
 </script>
 
-  <title>标签: 多线程 | magic</title>
+  <title>对比HashMap、HashTable、TreeMap之间的区别 | magic</title>
   
 
 
@@ -190,7 +193,7 @@
   
     
   
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/jh0904"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,7 +242,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
   </li>
@@ -283,28 +286,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -353,142 +334,239 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>多线程<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/对比HashMap、HashTable、TreeMap之间的区别/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="magic_jh">
+      <meta itemprop="description" content="一个java菜鸟的个人博客">
+      <meta itemprop="image" content="http://www.jh0904.top/jh/static/1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="magic">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/07/17/多线程（二）/" itemprop="url">
-              
-                <span itemprop="name">多线程（二）</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">对比HashMap、HashTable、TreeMap之间的区别
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-17T22:30:53+08:00"
-              content="2018-07-17" >
-          07-17
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-18 21:41:46 / 修改时间：21:42:57" itemprop="dateCreated datePublished" datetime="2018-07-18T21:41:46+08:00">2018-07-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/16/多线程（一）/" itemprop="url">
-              
-                <span itemprop="name">多线程（一）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-16T23:55:35+08:00"
-              content="2018-07-16" >
-          07-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/04/多线程/" itemprop="url">
-              
-                <span itemprop="name">多线程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-04T10:42:32+08:00"
-              content="2018-07-04" >
-          07-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/07/04/多线程面试题/" itemprop="url">
-              
-                <span itemprop="name">多线程面试题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-04T00:03:12+08:00"
-              content="2018-07-04" >
-          07-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <blockquote>
+<font style="color:blue">爱女票，爱Java❤❤❤ </font>
+</blockquote>
+<p>Hashtable、HashMap、TreeMap 都是最常见的一些 Map 实现，是以键值对的形式存储和操作数据的容器类型。</p>
+<p>Hashtable 是早期 Java 类库提供的一个哈希表实现，本身是同步的，不支持 null 键和值，由于同步导致的性能开销，所以已经很少被推荐使用。</p>
+<p>HashMap 是应用更加广泛的哈希表实现，行为上大致上与 HashTable 一致，主要区别在于 HashMap 不是同步的，支持 null 键和值等。通常情况下，HashMap 进行 put 或者 get 操作，可以达到常数时间的性能，所以它是绝大部分利用键值对存取场景的首选，比如，实现一个用户 ID 和用户信息对应的运行时存储结构。</p>
+<p>TreeMap 则是基于红黑树的一种提供顺序访问的 Map，和 HashMap 不同，它的 get、put、remove 之类操作都是 O（log(n)）的时间复杂度，具体顺序可以由指定的 Comparator 来决定，或者根据键的自然顺序来判断。</p>
+<h3 id="考点分析"><a href="#考点分析" class="headerlink" title="考点分析"></a>考点分析</h3><p>我感觉这三个Map中最重要的肯定是HashMap，首先看一下我之前的文章了解一下：<a href="https://blog.jh0904.top/2018/06/08/hashmap/" target="_blank" rel="noopener">HashMap的源码解析</a>，我认为学习集合框架，首先要了解基本的操作用法，这个应该去读API。其次，应当去学习源码，去了解怎么实现的具体代码。<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-18/32923831.jpg" alt=""></p>
+<p>对于三者的区别，我主要从三方面来说：</p>
+<h4 id="1-语法上面的区别："><a href="#1-语法上面的区别：" class="headerlink" title="1.语法上面的区别："></a>1.语法上面的区别：</h4><p>1）HashMap允许键值为空，Hashtable不允许。</p>
+<p>2）HashMap包含了containsvalue和containsKey，不包含有contains。</p>
+<h4 id="2-安全方面的区别"><a href="#2-安全方面的区别" class="headerlink" title="2.安全方面的区别"></a>2.安全方面的区别</h4><p>HashTable支持线程安全的，而HashMap不支持线程同步，是非线程安全的。因此，HashMap相对来说效率可能会高于Hashtable。</p>
+<h4 id="3-源码级别的区别"><a href="#3-源码级别的区别" class="headerlink" title="3.源码级别的区别"></a>3.源码级别的区别</h4><p>Hashtable，hash数组默认的大小是11，增加的方式是old*2+1,而HashMap中，hash数组的默认大小是16，而且一定是2的指数。</p>
+<p>相较于HashMap和HashTable，TreeMap是利用红黑树来实现的，实现了SortMap接口，能够对保存的记录根据键进行排序。所以一般需要排序的情况下是选择TreeMap来进行。</p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感觉不错，打个赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wx.png" alt="magic_jh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="magic_jh 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          
+            <a href="/tags/java基础/" rel="tag"><i class="fa fa-tag"></i> java基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/17/多线程（二）/" rel="next" title="多线程（二）">
+                <i class="fa fa-chevron-left"></i> 多线程（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOS8xNDQzOQ=="></div>
+    </div>
+
+  
+
         </div>
         
           
@@ -508,8 +586,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -640,6 +727,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#考点分析"><span class="nav-number">1.</span> <span class="nav-text">考点分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-语法上面的区别："><span class="nav-number">1.1.</span> <span class="nav-text">1.语法上面的区别：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安全方面的区别"><span class="nav-number">1.2.</span> <span class="nav-text">2.安全方面的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-源码级别的区别"><span class="nav-number">1.3.</span> <span class="nav-text">3.源码级别的区别</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -791,6 +894,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
@@ -815,6 +922,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

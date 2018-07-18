@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-17T14:31:26.269Z</updated>
+  <updated>2018-07-18T13:42:57.844Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>对比HashMap、HashTable、TreeMap之间的区别</title>
+    <link href="http://yoursite.com/2018/07/18/%E5%AF%B9%E6%AF%94HashMap%E3%80%81HashTable%E3%80%81TreeMap%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2018/07/18/对比HashMap、HashTable、TreeMap之间的区别/</id>
+    <published>2018-07-18T13:41:46.000Z</published>
+    <updated>2018-07-18T13:42:57.844Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><font style="color:blue">爱女票，爱Java❤❤❤ </font></blockquote><p>Hashtable、HashMap、TreeMap 都是最常见的一些 Map 实现，是以键值对的形式存储和操作数据的容器类型。</p><p>Hashtable 是早期 Java 类库提供的一个哈希表实现，本身是同步的，不支持 null 键和值，由于同步导致的性能开销，所以已经很少被推荐使用。</p><p>HashMap 是应用更加广泛的哈希表实现，行为上大致上与 HashTable 一致，主要区别在于 HashMap 不是同步的，支持 null 键和值等。通常情况下，HashMap 进行 put 或者 get 操作，可以达到常数时间的性能，所以它是绝大部分利用键值对存取场景的首选，比如，实现一个用户 ID 和用户信息对应的运行时存储结构。</p><p>TreeMap 则是基于红黑树的一种提供顺序访问的 Map，和 HashMap 不同，它的 get、put、remove 之类操作都是 O（log(n)）的时间复杂度，具体顺序可以由指定的 Comparator 来决定，或者根据键的自然顺序来判断。</p><h3 id="考点分析"><a href="#考点分析" class="headerlink" title="考点分析"></a>考点分析</h3><p>我感觉这三个Map中最重要的肯定是HashMap，首先看一下我之前的文章了解一下：<a href="https://blog.jh0904.top/2018/06/08/hashmap/" target="_blank" rel="noopener">HashMap的源码解析</a>，我认为学习集合框架，首先要了解基本的操作用法，这个应该去读API。其次，应当去学习源码，去了解怎么实现的具体代码。<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-18/32923831.jpg" alt=""></p><p>对于三者的区别，我主要从三方面来说：</p><h4 id="1-语法上面的区别："><a href="#1-语法上面的区别：" class="headerlink" title="1.语法上面的区别："></a>1.语法上面的区别：</h4><p>1）HashMap允许键值为空，Hashtable不允许。</p><p>2）HashMap包含了containsvalue和containsKey，不包含有contains。</p><h4 id="2-安全方面的区别"><a href="#2-安全方面的区别" class="headerlink" title="2.安全方面的区别"></a>2.安全方面的区别</h4><p>HashTable支持线程安全的，而HashMap不支持线程同步，是非线程安全的。因此，HashMap相对来说效率可能会高于Hashtable。</p><h4 id="3-源码级别的区别"><a href="#3-源码级别的区别" class="headerlink" title="3.源码级别的区别"></a>3.源码级别的区别</h4><p>Hashtable，hash数组默认的大小是11，增加的方式是old*2+1,而HashMap中，hash数组的默认大小是16，而且一定是2的指数。</p><p>相较于HashMap和HashTable，TreeMap是利用红黑树来实现的，实现了SortMap接口，能够对保存的记录根据键进行排序。所以一般需要排序的情况下是选择TreeMap来进行。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;font style=&quot;color:blue&quot;&gt;爱女票，爱Java❤❤❤ &lt;/font&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Hashtable、HashMap、TreeMap 都是最常见的一些 Map 实现，是以键值对的形式存储和操作数据的容器类型。&lt;
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>多线程（二）</title>
