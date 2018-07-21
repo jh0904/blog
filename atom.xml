@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-18T13:42:57.844Z</updated>
+  <updated>2018-07-21T00:58:30.708Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java提供了那些IO方式？NIO如何实现多路复用？</title>
+    <link href="http://yoursite.com/2018/07/21/java%E6%8F%90%E4%BE%9B%E4%BA%86%E9%82%A3%E4%BA%9BIO%E6%96%B9%E5%BC%8F%EF%BC%9FNIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F/"/>
+    <id>http://yoursite.com/2018/07/21/java提供了那些IO方式？NIO如何实现多路复用？/</id>
+    <published>2018-07-21T00:57:55.000Z</published>
+    <updated>2018-07-21T00:58:30.708Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><font style="color:blue">爱女票，爱Java❤❤❤ </font></blockquote><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Java IO 方式有很多种，基于不同的 IO 抽象模型和交互方式，可以进行简单区分。</p><p>首先，传统的 java.io 包，它基于流模型实现，提供了我们最熟知的一些 IO 功能，比如 File 抽象、输入输出流等。交互方式是同步、阻塞的方式，也就是说，在读取输入流或者写入输出流时，在读、写动作完成之前，线程会一直阻塞在那里，它们之间的调用是可靠的线性顺序。</p><p>java.io 包的好处是代码比较简单、直观，缺点则是 IO 效率和扩展性存在局限性，容易成为应用性能的瓶颈。</p><p>很多时候，人们也把 java.net 下面提供的部分网络 API，比如 Socket、ServerSocket、HttpURLConnection 也归类到同步阻塞 IO 类库，因为网络通信同样是 IO 行为。</p><p>第二，在 Java 1.4 中引入了 NIO 框架（java.nio 包），提供了 Channel、Selector、Buffer 等新的抽象，可以构建多路复用的、同步非阻塞 IO 程序，同时提供了更接近操作系统底层的高性能数据操作方式。</p><p>第三，在 Java 7 中，NIO 有了进一步的改进，也就是 NIO 2，引入了异步非阻塞 IO 方式，也有很多人叫它 AIO（Asynchronous IO）。异步 IO 操作基于事件和回调机制，可以简单理解为，应用操作直接返回，而不会阻塞在那里，当后台处理完成，操作系统会通知相应线程进行后续工作。</p><h3 id="考点分析"><a href="#考点分析" class="headerlink" title="考点分析"></a>考点分析</h3><p>上面所列出的回答是一种常见的分类方式，即所谓的BIO、NIO、AIO。</p><p>主要考察的点有：</p><ul><li>基础的API设计与功能<br>InputStream/OutputStream和Reader/Writer的区别和使用。</li><li>NIO、NIO2的基本组成。</li><li>不同场景下，分析BIO和NIO的设计和实现原理。</li><li>NIO提供高性能的原理</li><li><p>NIO还存在那些问题？改进的想法？</p><h3 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4></li><li>区分同步或异步（synchronous/asynchronous）<blockquote><p>所谓同步是指一个任务的完成需要依赖另一个任务时，只有等待被依赖的任务完成后，依赖的任务才能完成，这是一个可靠的任务序列。要成功都成功，要失败都失败，两个任务的状态可以保持一致。<br>异步不需要等待依赖的任务完成。只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了，至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。</p></blockquote></li><li>区分阻塞与非阻塞（blocking/non-blocking）<blockquote><p>在进行阻塞操作时，当前线程会处于阻塞状态，无法从事其他任务，只有当条件就绪才能继续，比如 ServerSocket 新连接建立完毕，或数据读取、写入操作完成；而非阻塞则是不管 IO 操作是否结束，直接返回，相应操作在后台继续处理。</p></blockquote></li></ul><p>对于IO，做一下总结：</p><ul><li>IO不仅仅是对文件的操作，在网络编程中，比如socket通信，都是典型的IO操作目标。</li><li>输入流、输出流（InputStream/OutputStream）适用于读取或者写入字节，例如图片操作文件。</li><li>Reader/Writer则是用于操作字符的，增加字符编解码的功能，适用于从文件中读取或者写入文本信息2，本质上计算机操作的都是字节，不管是从网络通信还是文件读取，Reader/Writer相当于构建了应用逻辑与原始数据之间的桥梁。</li><li>BufferedOutputStream等带缓冲区的实现，可以避免频繁的磁盘读写，进而提高 IO处理效率。这种设计利用了缓冲区，将批量数据进行一次操作，但在使用中千万别忘了 flush。</li><li>参考下面这张类图，很多 IO工具类都实现了 Closeable接口，因为需要进行资源的释放。比如，打开 FileInputStream，它就会获取相应的文件描述符（ FileDescriptor），需要利用 try- with- resources、 try- finally等机制保证 FileInputStream被明确关闭，进而相应文件描述符也会失效，否则将导致资源无法被释放。利用专栏前面的内容提到的 Cleaner或 finalize机制作为资源释放的最后把关，也是必要的。<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-21/67006062.jpg" alt=""></li></ul><h4 id="NIO的概览"><a href="#NIO的概览" class="headerlink" title="NIO的概览"></a>NIO的概览</h4><ol><li>首先了解一下NIO的基本组成部分：</li></ol><ul><li><p>Chnnel</p><blockquote><p>由 java.nio.channels 包定义的。 Channel 表示 IO 源与目标打开的连接。<br>Channel 类似于传统的“流”。只不过 Channel本身不能直接访问数据， Channel 只能与Buffer 进行交互。<br>类似在 Linux 之类操作系统上看到的文件描述符，是 NIO 中被用来支持批量式 IO 操作的一种抽象。<br>File 或者 Socket，通常被认为是比较高层次的抽象，而 Channel 则是更加操作系统底层的一种抽象，这也使得 NIO 得以充分利用现代操作系统底层机制，获得特定场景的性能优化，例如，DMA（Direct Memory Access）等。不同层次的抽象是相互关联的，我们可以通过 Socket 获取 Channel，反之亦然。</p></blockquote></li><li><p>Buffer</p><blockquote><p>一个用于特定基本数据类型的容器。由 java.nio 包定义的，所有缓冲区都是 Buffer 抽象类的子类。Java NIO 中的 Buffer 主要用于与 NIO 通道进行交互，数据是从通道读入缓冲区，从缓冲区写入通道中的</p></blockquote></li><li>Selector<blockquote><p>是 NIO 实现多路复用的基础，它提供了一种高效的机制，可以检测到注册在 Selector 上的多个 Channel 中，是否有 Channel 处于就绪状态，进而实现了单线程对多 Channel 的高效管理。<br>Selector 同样是基于底层操作系统机制，不同模式、不同版本都存在区别，例如，在最新的代码库里，相关实现如下：<br>在Linux中依赖于epoll<br>在Windows中依赖于iocp模型</p></blockquote></li><li>Chartset<blockquote><p>提供 Unicode 字符串定义，NIO 也提供了相应的编解码器等，例如，通过下面的方式进行字符串到 ByteBuffer 的转换：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CharSet.defaultCharSet().encode(<span class="string">"Hello,World"</span>)</span><br></pre></td></tr></table></figure></blockquote></li></ul><ol start="2"><li>NIO的具体作用</li></ol><p>未完待续…</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;font style=&quot;color:blue&quot;&gt;爱女票，爱Java❤❤❤ &lt;/font&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>对比HashMap、HashTable、TreeMap之间的区别</title>
