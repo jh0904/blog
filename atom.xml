@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-24T15:45:42.276Z</updated>
+  <updated>2018-07-28T04:21:20.140Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>深入理解java虚拟机（一）</title>
+    <link href="http://yoursite.com/2018/07/28/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2018/07/28/深入理解java虚拟机（一）/</id>
+    <published>2018-07-28T04:14:26.000Z</published>
+    <updated>2018-07-28T04:21:20.140Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><font style="color:blue">爱女票，爱Java❤❤❤ </font></blockquote><p>今天主要学习了《深入理解java虚拟机》的前两章节，第一章主要讲解了java语法的一些特性，及java发展的历史，还有java虚拟机的一些知识。<br>第二章主要讲了java内存区域与内存溢出异常。主要的内容我都总结了思维导图，如果需要导图，可以从百度云下载<a href="https://pan.baidu.com/s/1esP5YDPv_5UZ_neUvGo2BQ" target="_blank" rel="noopener">java虚拟机导图</a>  ，密码是0n73</p><p>好了，废话不说，直接上图。有不正确的地方，欢迎大家指正。</p><p><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-28/92420488.jpg" alt="java"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;font style=&quot;color:blue&quot;&gt;爱女票，爱Java❤❤❤ &lt;/font&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;今天主要学习了《深入理解java虚拟机》的前两章节，第一章主要讲解了java语法的一些特性，及java发展的历史，还有java虚
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="虚拟机" scheme="http://yoursite.com/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>阶段性总结</title>
@@ -556,31 +584,6 @@
     
     
       <category term="java源码" scheme="http://yoursite.com/tags/java%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于String的理解</title>
-    <link href="http://yoursite.com/2018/06/07/%E5%85%B3%E4%BA%8EString%E7%B1%BB%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>http://yoursite.com/2018/06/07/关于String类的理解/</id>
-    <published>2018-06-07T07:08:00.000Z</published>
-    <updated>2018-06-22T15:25:07.765Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于下面的代码，为什么结果为true？在我们的想法里，String是一个引用类型，为什么对象可以相等？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.lq.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> magic_jh</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 1.1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">String s1=<span class="string">"helloworld"</span>;</span><br><span class="line">String s2=<span class="string">"helloworld"</span>;</span><br><span class="line">String s3=<span class="keyword">new</span> String(<span class="string">"helloworld"</span>);</span><br><span class="line">System.out.println(s1==s2);<span class="comment">//true</span></span><br><span class="line">System.out.println(s1==s3);<span class="comment">//false</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>其实可以看一下内存的分配，就一目了然了。</p><p><img src="https://img-blog.csdn.net/20180423233411390?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzQxMjM3NDI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="Markdown"></p><p>从图中可以看出其实s1和s2指向的不是堆内存，而是方法区的字符常量池，所以我们知道==比的是地址值，s1,s2指向的是同一个地址，肯定结果为true。我们现在来看s3，s3使用的是构造方法，它就在堆内存开辟了一个空间，其中的”helloworld”还是来自于字符常量池。所以s3指向的是堆内存中的地址，最后与s1比较的是s3指向的地址是堆内存的地址，所以为false。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;关于下面的代码，为什么结果为true？在我们的想法里，String是一个引用类型，为什么对象可以相等？&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;lin
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
     
   </entry>
   
