@@ -115,20 +115,17 @@
 
 
 
-  <meta name="description" content="爱女票，爱Java❤❤❤   概述反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。 动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用来包装 RPC">
-<meta name="keywords" content="面试,java基础">
-<meta property="og:type" content="article">
-<meta property="og:title" content="动态代理基于什么原理？">
-<meta property="og:url" content="http://yoursite.com/2018/07/12/动态代理基于什么原理？/index.html">
+  <meta name="description" content="一个java菜鸟的个人博客">
+<meta name="keywords" content="个人博客,java,web">
+<meta property="og:type" content="website">
+<meta property="og:title" content="magic">
+<meta property="og:url" content="http://yoursite.com/categories/java/page/3/index.html">
 <meta property="og:site_name" content="magic">
-<meta property="og:description" content="爱女票，爱Java❤❤❤   概述反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。 动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用来包装 RPC">
+<meta property="og:description" content="一个java菜鸟的个人博客">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-12/37239512.jpg">
-<meta property="og:updated_time" content="2018-07-12T03:12:02.736Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态代理基于什么原理？">
-<meta name="twitter:description" content="爱女票，爱Java❤❤❤   概述反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。 动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用来包装 RPC">
-<meta name="twitter:image" content="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-12/37239512.jpg">
+<meta name="twitter:title" content="magic">
+<meta name="twitter:description" content="一个java菜鸟的个人博客">
 
 
 
@@ -137,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/12/动态代理基于什么原理？/"/>
+  <link rel="canonical" href="http://yoursite.com/categories/java/page/3/"/>
 
 
 
@@ -147,7 +144,7 @@
   };
 </script>
 
-  <title>动态代理基于什么原理？ | magic</title>
+  <title>分类: java | magic</title>
   
 
 
@@ -193,7 +190,7 @@
   
     
   
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
     <a href="https://github.com/jh0904"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -250,7 +247,7 @@
         
         
           
-          <li class="menu-item menu-item-categories">
+          <li class="menu-item menu-item-categories menu-item-active">
     <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
   </li>
@@ -286,6 +283,28 @@
 
   
     
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
 
   
 
@@ -334,264 +353,63 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block category">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>java<small>分类</small>
+        </h1>
+      </div>
 
-  
-  
-  
-
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/12/动态代理基于什么原理？/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="magic_jh">
-      <meta itemprop="description" content="一个java菜鸟的个人博客">
-      <meta itemprop="image" content="http://www.jh0904.top/jh/static/1.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="magic">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2018/06/06/Vector的源码解析/" itemprop="url">
+              
+                <span itemprop="name">Vector的源码解析</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">动态代理基于什么原理？
-              
-            
-          </h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-12 11:08:48 / 修改时间：11:12:02" itemprop="dateCreated datePublished" datetime="2018-07-12T11:08:48+08:00">2018-07-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <blockquote>
-<font style="color:blue">爱女票，爱Java❤❤❤ </font>
-</blockquote>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>反射机制是 Java 语言提供的一种基础功能，赋予程序在运行时自省（introspect，官方用语）的能力。通过反射我们可以直接操作类或者对象，比如获取某个对象的类定义，获取类声明的属性和方法，调用方法或者构造对象，甚至可以运行时修改类定义。</p>
-<p>动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用来包装 RPC 调用、面向切面的编程（AOP）。</p>
-<p>实现动态代理的方式很多，比如 JDK 自身提供的动态代理，就是主要利用了上面提到的反射机制。还有其他的实现方式，比如利用传说中更高性能的字节码操作机制，类似 ASM、cglib（基于 ASM）、Javassist 等。</p>
-<h3 id="考点分析"><a href="#考点分析" class="headerlink" title="考点分析"></a>考点分析</h3><p>这道题会让人下意识的感觉是在考反射，但是实现动态代理的方式有很多，不止是反射一种。功能才是目的，实现的方法有很多。<br>主要的考察点：</p>
-<ul>
-<li>考察对反射的了解程度。</li>
-<li>动态代理解决了什么问题，应用场景是什么？</li>
-<li>JDK的动态代理的设计和实现和cgilb的方式有什么不同，如何选择两者？</li>
-</ul>
-<h4 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h4><p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。<br>要想解剖一个类,必须先要获取到该类的字节码文件对象。而解剖使用的就是Class类中的方法.所以先要获取到每一个字节码文件对应的Class类型的对象.<br>通过反射可以动态获取Constructors、Method、Class、Field。这些只能获取公共的方法，要想获取私有的方法，需要加上getDeclared+…，。<br>其中还有反射提供的AccessibleObject.setAccessible(boolean flag),<br>这里的Accessible可以理解为修改成修饰成员public、protected、private。可以修改为false，取消java语法检查。这意味着可以在运行时修改成员变量的访问限制。<br>setAccessible 的应用场景非常普遍，遍布我们的日常开发、测试、依赖注入等各种框架中。比如，在 O/R Mapping 框架中，我们为一个 Java 实体对象，运行时自动生成 setter、getter 的逻辑，这是加载或者持久化数据非常必要的，框架通常可以利用反射做这个事情，而不需要开发者手动写类似的重复代码。</p>
-<blockquote>
-<p> <font style="color:red">需要注意的是在java9以后，这个方法有一些改变，因为新增的模块化系统，处于对系统封装性的考虑，对反射进行了一些限制,Jigsaw引入了所谓的open的概念，只有当被反射对象操作的模块和指定的包对反射调用者模块open，才能使用setAccessible，否则被认为不合法（illegal）。<br> </font><br>具体的操作可以参考我写的Demo：<a href="https://https://github.com/jh0904/GitTest/tree/master/GitTest1/src/cn/reflect" target="_blank" rel="noopener">reflect</a></p>
-</blockquote>
-<h4 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h4><p>代理可以看做对调用目标的一个包装，这样我们可以对目标代码的调用不是直接发生的，而是通过代理完成的。<br>动态代理的作用可以用来做AOP。可以去做一些重复的工作（比如权限呢检验，日志记录），用动态代理去抽取出来。增强代码的易用性。</p>
-<p>具体介绍一下java里面内置的Proxy类的一些简单操作：<br>在Java中java.lang.reflect包下提供了一个Proxy类和一个InvocationHandler接口，通过使用这个类和接口就可以生成动态代理对象。JDK提供的代理只能针对接口做代理。我们有更强大的代理cglib。</p>
-<p>Proxy类中的方法创建动态代理类对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static Object newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span><br></pre></td></tr></table></figure></p>
-<p>最终会调用InvocationHandler的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InvocationHandler Object invoke(Object proxy,Method method,Object[] args)</span><br></pre></td></tr></table></figure></p>
-<p>动态代理的具体实现可以参考我的GitHub：<a href="https://github.com/jh0904/GitTest/tree/master/GitTest1/src/cn/reflect/proxy" target="_blank" rel="noopener">Proxy</a>。</p>
-<p>cgilb实现动态代理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">待续...</span><br></pre></td></tr></table></figure></p>
-<p>动态代理的使用场景：<br>AOP 通过（动态）代理机制可以让开发者从这些繁琐事项中抽身出来，大幅度提高了代码的抽象程度和复用度。从逻辑上来说，我们在软件设计和实现中的类似代理，如 Facade、Observer 等很多设计目的，都可以通过动态代理优雅地实现。<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-12/37239512.jpg" alt=""></p>
-<h4 id="JDK的动态代理的设计和实现和cgilb的方式有什么不同"><a href="#JDK的动态代理的设计和实现和cgilb的方式有什么不同" class="headerlink" title="JDK的动态代理的设计和实现和cgilb的方式有什么不同?"></a>JDK的动态代理的设计和实现和cgilb的方式有什么不同?</h4><p>我大概简单介绍一下：<br><strong>对于JDK Proxy的优势：</strong></p>
-<ul>
-<li>最小化依赖关系，减少依赖意味着简化开发和维护，JDK 本身的支持，可能比 cglib 更加可靠。</li>
-<li>平滑进行 JDK 版本升级，而字节码类库通常需要进行更新以保证在新版 Java 上能够使用。</li>
-<li>代码实现简单。</li>
-</ul>
-<p><strong>cglib框架的优势：</strong></p>
-<ul>
-<li>有的时候调用目标可能不便实现额外接口，从某种角度看，限定调用者实现接口是有些侵入性的实践，类似 cglib 动态代理就没有这种限制。</li>
-<li>只操作我们关心的类，而不必为其他相关类增加工作量。</li>
-<li>高性能。</li>
-</ul>
-
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>感觉不错，打个赏。</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wx.png" alt="magic_jh 微信支付"/>
-        <p>微信支付</p>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-06-06T14:20:17+08:00"
+              content="2018-06-06" >
+          06-06
+        </time>
       </div>
-    
 
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/zfb.jpg" alt="magic_jh 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
-          
-            <a href="/tags/java基础/" rel="tag"><i class="fa fa-tag"></i> java基础</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/07/11/String、StringBuffer、StringBuilder的区别？/" rel="next" title="String、StringBuffer、StringBuilder的区别？">
-                <i class="fa fa-chevron-left"></i> String、StringBuffer、StringBuilder的区别？
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/13/int和Integer的区别？Integer的值缓存范围？/" rel="prev" title="int和Integer的区别？Integer的值缓存范围？">
-                int和Integer的区别？Integer的值缓存范围？ <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/categories/java/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/categories/java/">1</a><a class="page-number" href="/categories/java/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+
 
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOS8xNDQzOQ=="></div>
-    </div>
-
-  
-
         </div>
         
           
@@ -611,17 +429,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -766,22 +575,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#考点分析"><span class="nav-number">2.</span> <span class="nav-text">考点分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#反射"><span class="nav-number">2.1.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态代理"><span class="nav-number">2.2.</span> <span class="nav-text">动态代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK的动态代理的设计和实现和cgilb的方式有什么不同"><span class="nav-number">2.3.</span> <span class="nav-text">JDK的动态代理的设计和实现和cgilb的方式有什么不同?</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -933,10 +726,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
-
-
 
   
 
@@ -961,17 +750,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 
