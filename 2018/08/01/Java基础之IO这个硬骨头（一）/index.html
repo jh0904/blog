@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/padan1.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/padan1.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/padan1.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！   IO的概述首先，我们要了解一下什么是IO，首先IO就是计算机中指Input/Output,也就是输入和输出。由于程序和运行时数据是在内存">
+<meta name="keywords" content="java基础,IO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础之IO这个硬骨头（一）">
+<meta property="og:url" content="http://yoursite.com/2018/08/01/Java基础之IO这个硬骨头（一）/index.html">
+<meta property="og:site_name" content="magic">
+<meta property="og:description" content="每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！   IO的概述首先，我们要了解一下什么是IO，首先IO就是计算机中指Input/Output,也就是输入和输出。由于程序和运行时数据是在内存">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2013/12/iostream2xx.png">
+<meta property="og:updated_time" content="2018-08-01T14:41:17.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java基础之IO这个硬骨头（一）">
+<meta name="twitter:description" content="每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！   IO的概述首先，我们要了解一下什么是IO，首先IO就是计算机中指Input/Output,也就是输入和输出。由于程序和运行时数据是在内存">
+<meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2013/12/iostream2xx.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="magic" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/01/Java基础之IO这个硬骨头（一）/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Java基础之IO这个硬骨头（一） | magic</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/jh0904"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">magic</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">jh</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/Java基础之IO这个硬骨头（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="magic_jh">
+      <meta itemprop="description" content="一个java菜鸟的个人博客">
+      <meta itemprop="image" content="http://www.jh0904.top/jh/static/1.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="magic">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java基础之IO这个硬骨头（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-01 22:37:44 / 修改时间：22:41:17" itemprop="dateCreated datePublished" datetime="2018-08-01T22:37:44+08:00">2018-08-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！</p>
+</blockquote>
+<hr>
+<h3 id="IO的概述"><a href="#IO的概述" class="headerlink" title="IO的概述"></a>IO的概述</h3><p>首先，我们要了解一下什么是IO，首先IO就是计算机中指Input/Output,也就是输入和输出。由于程序和运行时数据是在内存中驻留，由CPU这个超快的计算核心来执行，涉及到数据交换的地方，通常是磁盘、网络等，就需要IO接口。<br>流的概念：Stream（流）是一个很重要的概念，可以把流想象成一个水管，数据就是水管里的水，但是只能单向流动。Input Stream就是数据从外面（磁盘、网络）流进内存，Output Stream就是数据从内存流到外面去。对于浏览网页来说，浏览器和新浪服务器之间至少需要建立两根水管，才可以既能发数据，又能收数据。</p>
+<h3 id="IO如何学习？"><a href="#IO如何学习？" class="headerlink" title="IO如何学习？"></a>IO如何学习？</h3><h4 id="IO重点的类"><a href="#IO重点的类" class="headerlink" title="IO重点的类"></a>IO重点的类</h4><p>IO的学习我认为最主要的就是五个类和一个接口，把这些学好，基本就没什么问题：<br>File、OutputStream、InputStream、Writer、Reader和接口Serializable。</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File</td>
+<td>文件类</td>
+</tr>
+<tr>
+<td>OutputStream</td>
+<td>字节输出流</td>
+</tr>
+<tr>
+<td>InputStream</td>
+<td>字节输入流</td>
+</tr>
+<tr>
+<td>Writer</td>
+<td>字符输流</td>
+</tr>
+<tr>
+<td>Reader</td>
+<td>字符输入流</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>File（文件特征与管理）：用于文件或者目录的描述信息，例如生成新目录，修改文件名，删除文件，判断文件所在路径等。</li>
+<li>InputStream（二进制格式操作）：抽象类，基于字节的输入操作，是所有输入流的父类。定义了所有输入流都具有的共同特征。</li>
+<li>OutputStream（二进制格式操作）：抽象类。基于字节的输出操作。是所有输出流的父类。定义了所有输出流都具有的共同特征。</li>
+<li>Reader（文件格式操作）：抽象类，基于字符的输入操作。</li>
+<li>Writer（文件格式操作）：抽象类，基于字符的输出操作。</li>
+</ol>
+<p>上面是对这几个类的简单概述基本就是这几个较为重点，当然还有扩展的FileInputStream等等，但是我认为最基础的还是这几个。</p>
+<h4 id="IO的分类"><a href="#IO的分类" class="headerlink" title="IO的分类"></a>IO的分类</h4><p>从上面我们学习了流的概念；一个流被定义为一个数据序列。输入流用于从源读取数据，输出流用于向目标写数据。<br>下图是一个描述输入流和输出流的类层次图。<br><img src="http://www.runoob.com/wp-content/uploads/2013/12/iostream2xx.png" alt="IO"></p>
+<p>从图中我们可以看到简单的分类是字符流与字节流，接下来我在解释一下：<br>先来说一下输入、输出流：</p>
+<ul>
+<li>输入流：程序从输入流读取数据源。数据源包括外界(键盘、文件、网络…)，即是将数据源读入到程序的通信通道</li>
+</ul>
+<ul>
+<li><p>输出流程序向输出流写入数据。将程序中的数据输出到外界（显示器、打印机、文件、网络…）的通信通道。</p>
+<pre><code>采用数据流的目的就是使得输出输入独立于设备。
+
+输入流( Input  Stream )不关心数据源来自何种设备（键盘，文件，网络）。  
+输出流( Output Stream )不关心数据的目的是何种设备（键盘，文件，网络）。
+</code></pre></li>
+</ul>
+<p>流序列中的数据既可以是未经加工的原始二进制数据，也可以是经一定编码处理后符合某种格式规定的特定数据。因此Java中的流分为两种：</p>
+<p>1)  字节流：数据流中最小的数据单元是字节<br>2)  字符流：数据流中最小的数据单元是字符， Java中的字符是Unicode编码，一个字符占用两个字节。</p>
+<p><strong>字符流的由来：</strong> Java中字符是采用Unicode标准，一个字符是16位，即一个字符使用两个字节来表示。为此，JAVA中引入了处理字符的流。因为数据编码的不同，而有了对字符进行高效操作的流对象。本质其实就是基于字节流读取时，去查了指定的码表。<br>所以说：<strong>字符流=字节流+编码表</strong>。这个编码表我们后来再进行讲解。</p>
+<blockquote>
+<p>注意：<br>a.如果没有明确说按照什么区分，默认按照数据类型进行分。<br>b.除非文件用windows自带的记事本打开我们能够读懂，才采用字符流，否则建议使用字节流。</p>
+</blockquote>
+<h3 id="InputStream-OutputStream的代码实现"><a href="#InputStream-OutputStream的代码实现" class="headerlink" title="InputStream/OutputStream的代码实现"></a>InputStream/OutputStream的代码实现</h3><blockquote>
+<p>通过上面的分析后我们知道要使用：OutputStream<br> 但是通过查看API，我们发现该流对象是一个抽象类，不能实例化。<br> 所以，我们要找一个具体的子类。<br> 而我们要找的子类是什么名字的呢?这个时候，很简单，我们回想一下，我们是不是要往文件中写东西。<br> 文件是哪个单词——&gt;File<br> 然后用的是字节输出流，联起来就是：FileOutputStream<br>注意：每种基类的子类都是以父类名作为后缀名。<br>          XxxOutputStream<br>          XxxInputStream<br>          XxxReader<br>          XxxWriter</p>
+</blockquote>
+<p>所以我们从FileInputStream和FileOutputStream来演示对字节流的操作。</p>
+<h4 id="FileOutputStream读取数据"><a href="#FileOutputStream读取数据" class="headerlink" title="FileOutputStream读取数据"></a>FileOutputStream读取数据</h4><h5 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h5><ol>
+<li>创建字节输入流对象</li>
+<li>调用read()方法</li>
+<li>释放资源<h5 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h5></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">          <span class="comment">// 创建字节输出流对象</span></span><br><span class="line">          FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"fos.txt"</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 创建字节输出流对象了做了几件事情：</span></span><br><span class="line"><span class="comment"> * A:调用系统功能去创建文件</span></span><br><span class="line"><span class="comment"> * B:创建fos对象</span></span><br><span class="line"><span class="comment"> * C:把fos对象指向这个文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//写数据</span></span><br><span class="line">fos.write(<span class="string">"hello,IO"</span>.getBytes());</span><br><span class="line">fos.write(<span class="string">"java"</span>.getBytes());</span><br><span class="line"></span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line"><span class="comment">//关闭此文件输出流并释放与此流有关的所有系统资源。</span></span><br><span class="line">fos.close();</span><br></pre></td></tr></table></figure>
+<h5 id="注意的问题"><a href="#注意的问题" class="headerlink" title="注意的问题"></a>注意的问题</h5><p><strong>1. 创建字节输出流对象做了几件事情?</strong></p>
+<pre><code>FileOutputStream(File file)
+File file = new File(&quot;fos.txt&quot;);
+FileOutputStream fos = new FileOutputStream(file);
+FileOutputStream(String name)
+</code></pre><p>其实先根据文件名称，使用File把这个文件创建出来，然后再把这个文件传入FileOutputStream(file);<br><strong>2. 为什么要关闭资源？</strong><br>释放资源的目的是要让流对象变成垃圾，这样就可以被垃圾回收器回收了，其次是通知系统去释放跟该文件相关的资源<br><strong>3. 如何实现数据换行？</strong><br>为什么现在没有换行呢?因为你值写了字节数据，并没有写入换行符号。<br>如何实现呢?写入换行符号即可呗。<br>刚才我们看到了有写文本文件打开是可以的，通过windows自带的那个不行，为什么呢?<br>因为不同的系统针对不同的换行符号识别是不一样的?</p>
+<blockquote>
+<p>windows:\r\n<br>linux:\n<br>Mac:\r</p>
+</blockquote>
+<p>而一些常见的个高级记事本，是可以识别任意换行符号的。<br>为了使得同一个java程序的换行符在所有的操作系统中都有一样的表现，使用 <strong><em>%n</em></strong>，就可以做到平台无关的换行。</p>
+<p><strong>4. 如何实现数据的追加写入？</strong></p>
+<p>用构造方法带第二个参数是true的情况即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个向具有指定 name 的文件中写入数据的输出文件流。如果第二个参数为 true，则将字节写入文件末尾处，而不是写入文件开始处。</span></span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"fos3.txt"</span>, <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这样创建就可以实现数据的追加。</p>
+<h4 id="FileInputStream读取数据"><a href="#FileInputStream读取数据" class="headerlink" title="FileInputStream读取数据"></a>FileInputStream读取数据</h4><h5 id="操作步骤-1"><a href="#操作步骤-1" class="headerlink" title="操作步骤"></a>操作步骤</h5><ol>
+<li>创建字节输入流对象</li>
+<li>调用read()方法</li>
+<li>释放资源</li>
+</ol>
+<h5 id="代码体现："><a href="#代码体现：" class="headerlink" title="代码体现："></a>代码体现：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">      <span class="comment">//创建FileInputStream</span></span><br><span class="line">FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"fos.txt"</span>);</span><br><span class="line">	</span><br><span class="line">          </span><br><span class="line">      <span class="comment">//read（）方法读取数据</span></span><br><span class="line"><span class="comment">//方式1</span></span><br><span class="line">int by = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>((by=fis.read())!=<span class="number">-1</span>) &#123;</span><br><span class="line">	System.out.print((char)by);</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="comment">//方式2</span></span><br><span class="line">byte[] bys = <span class="keyword">new</span> byte[<span class="number">1024</span>];</span><br><span class="line">int len = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>((len=fis.read(bys))!=<span class="number">-1</span>) &#123;</span><br><span class="line">	System.out.print(<span class="keyword">new</span> <span class="built_in">String</span>(bys,<span class="number">0</span>,len));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//关闭资源</span></span><br><span class="line">fis.close();</span><br></pre></td></tr></table></figure>
+<h3 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h3><h4 id="复制文本文件"><a href="#复制文本文件" class="headerlink" title="复制文本文件"></a>复制文本文件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 复制文本文件。</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 数据源：从哪里来</span></span><br><span class="line"><span class="comment"> * a.txt	--	读取数据	--	FileInputStream	</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 目的地：到哪里去</span></span><br><span class="line"><span class="comment"> * b.txt	--	写数据		--	FileOutputStream</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * java.io.FileNotFoundException: a.txt (系统找不到指定的文件。)</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 这一次复制中文没有出现任何问题，为什么呢?</span></span><br><span class="line"><span class="comment"> * 上一次我们出现问题的原因在于我们每次获取到一个字节数据，就把该字节数据转换为了字符数据，然后输出到控制台。</span></span><br><span class="line"><span class="comment"> * 而这一次呢?确实通过IO流读取数据，写到文本文件，你读取一个字节，我就写入一个字节，你没有做任何的转换。</span></span><br><span class="line"><span class="comment"> * 它会自己做转换。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CopyFileDemo</span> </span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args) throws IOException &#123;</span><br><span class="line">		<span class="comment">// 封装数据源</span></span><br><span class="line">		FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"a.txt"</span>);</span><br><span class="line">		<span class="comment">// 封装目的地</span></span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"b.txt"</span>);</span><br><span class="line"></span><br><span class="line">		byte[] bys = <span class="keyword">new</span> byte[<span class="number">1024</span>];</span><br><span class="line">		int len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((len = fis.read(bys)) != <span class="number">-1</span>) &#123;</span><br><span class="line">			fos.write(bys, <span class="number">0</span>, len);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 释放资源(建议先关后创建的)</span></span><br><span class="line">		fos.close();</span><br><span class="line">		fis.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复制图片"><a href="#复制图片" class="headerlink" title="复制图片"></a>复制图片</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast_03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 需求：把e:\\林青霞.jpg内容复制到当前项目目录下的mn.jpg中</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 数据源：</span></span><br><span class="line"><span class="comment"> * 		e:\\林青霞.jpg	--读取数据--FileInputStream</span></span><br><span class="line"><span class="comment"> * 目的地：</span></span><br><span class="line"><span class="comment"> * 		mn.jpg--写出数据--FileOutputStream</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CopyImageDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="comment">// 封装数据源</span></span><br><span class="line">		FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"e:\\林青霞.jpg"</span>);</span><br><span class="line">		<span class="comment">// 封装目的地</span></span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"mn.jpg"</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 复制数据</span></span><br><span class="line">		<span class="keyword">byte</span>[] bys = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((len = fis.read(bys)) != -<span class="number">1</span>) &#123;</span><br><span class="line">			fos.write(bys, <span class="number">0</span>, len);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 释放资源</span></span><br><span class="line">		fos.close();</span><br><span class="line">		fis.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="思考问题：计算机如何识别中文"><a href="#思考问题：计算机如何识别中文" class="headerlink" title="思考问题：计算机如何识别中文"></a>思考问题：计算机如何识别中文</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 计算机是如何识别什么时候该把两个字节转换为一个中文呢?</span></span><br><span class="line"><span class="comment"> * 在计算机中中文的存储分两个字节：</span></span><br><span class="line"><span class="comment"> * 		第一个字节肯定是负数。</span></span><br><span class="line"><span class="comment"> * 		第二个字节常见的是负数，可能有正数。但是没影响。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// String s = "abcde";</span></span><br><span class="line">		<span class="comment">// // [97, 98, 99, 100, 101]</span></span><br><span class="line"></span><br><span class="line">		String s = <span class="string">"我爱你中国"</span>;</span><br><span class="line">		<span class="comment">// [-50, -46, -80, -82, -60, -29, -42, -48, -71, -6]</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">byte</span>[] bys = s.getBytes();</span><br><span class="line">		System.out.println(Arrays.toString(bys));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字符缓冲区流"><a href="#字符缓冲区流" class="headerlink" title="字符缓冲区流"></a>字符缓冲区流</h3><p>BufferedOutputStream（字符缓冲输出流）/BufferedInputStream（字符缓冲输入流）<br>构造方法为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个 BufferedInputStream 并保存其参数，即输入流 in，以便将来使用。创建一个内部缓冲区数组并将其存储在 buf 中,该buf的大小默认为8192。   </span></span><br><span class="line">public   BufferedInputStream(InputStream <span class="keyword">in</span>); </span><br><span class="line"><span class="comment">//创建具有指定缓冲区大小的 BufferedInputStream 并保存其参数，即输入流 in，以便将来使用。创建一个长度为 size 的内部缓冲区数组并将其存储在 buf 中。   </span></span><br><span class="line">public   BufferedInputStream(InputStream <span class="keyword">in</span>,int size);</span><br></pre></td></tr></table></figure></p>
+<p>BufferedOutputStream的思想进行简单说明：<em>BufferedOutputStream通过字节数组来缓冲数据，当缓冲区满或者用户调用flush()函数时，它就会将缓冲区的数据写入到输出流中。</em><br>话不多说，上代码——–&gt;</p>
+<h4 id="文件复制"><a href="#文件复制" class="headerlink" title="文件复制"></a>文件复制</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">package cn.itcast_06;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.BufferedOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 需求：把e:\\哥有老婆.mp4复制到当前项目目录下的copy.mp4中</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 字节流四种方式复制文件：</span></span><br><span class="line"><span class="comment"> * 基本字节流一次读写一个字节：	共耗时：117235毫秒</span></span><br><span class="line"><span class="comment"> * 基本字节流一次读写一个字节数组： 共耗时：156毫秒</span></span><br><span class="line"><span class="comment"> * 高效字节流一次读写一个字节： 共耗时：1141毫秒</span></span><br><span class="line"><span class="comment"> * 高效字节流一次读写一个字节数组： 共耗时：47毫秒</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CopyMp4Demo</span> </span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args) throws IOException &#123;</span><br><span class="line">		long start = System.currentTimeMillis();</span><br><span class="line">		<span class="comment">// method1("e:\\哥有老婆.mp4", "copy1.mp4");</span></span><br><span class="line">		<span class="comment">// method2("e:\\哥有老婆.mp4", "copy2.mp4");</span></span><br><span class="line">		<span class="comment">// method3("e:\\哥有老婆.mp4", "copy3.mp4");</span></span><br><span class="line">		method4(<span class="string">"e:\\哥有老婆.mp4"</span>, <span class="string">"copy4.mp4"</span>);</span><br><span class="line">		long end = System.currentTimeMillis();</span><br><span class="line">		System.out.println(<span class="string">"共耗时："</span> + (end - start) + <span class="string">"毫秒"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 高效字节流一次读写一个字节数组：</span></span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> method4(<span class="built_in">String</span> srcString, <span class="built_in">String</span> destString)</span><br><span class="line">			throws IOException &#123;</span><br><span class="line">		BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(</span><br><span class="line">				srcString));</span><br><span class="line">		BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(</span><br><span class="line">				<span class="keyword">new</span> FileOutputStream(destString));</span><br><span class="line"></span><br><span class="line">		byte[] bys = <span class="keyword">new</span> byte[<span class="number">1024</span>];</span><br><span class="line">		int len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((len = bis.read(bys)) != <span class="number">-1</span>) &#123;</span><br><span class="line">			bos.write(bys, <span class="number">0</span>, len);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		bos.close();</span><br><span class="line">		bis.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 高效字节流一次读写一个字节：</span></span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> method3(<span class="built_in">String</span> srcString, <span class="built_in">String</span> destString)</span><br><span class="line">			throws IOException &#123;</span><br><span class="line">		BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(</span><br><span class="line">				srcString));</span><br><span class="line">		BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(</span><br><span class="line">				<span class="keyword">new</span> FileOutputStream(destString));</span><br><span class="line"></span><br><span class="line">		int by = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((by = bis.read()) != <span class="number">-1</span>) &#123;</span><br><span class="line">			bos.write(by);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		bos.close();</span><br><span class="line">		bis.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 基本字节流一次读写一个字节数组</span></span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> method2(<span class="built_in">String</span> srcString, <span class="built_in">String</span> destString)</span><br><span class="line">			throws IOException &#123;</span><br><span class="line">		FileInputStream fis = <span class="keyword">new</span> FileInputStream(srcString);</span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(destString);</span><br><span class="line"></span><br><span class="line">		byte[] bys = <span class="keyword">new</span> byte[<span class="number">1024</span>];</span><br><span class="line">		int len = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((len = fis.read(bys)) != <span class="number">-1</span>) &#123;</span><br><span class="line">			fos.write(bys, <span class="number">0</span>, len);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		fos.close();</span><br><span class="line">		fis.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 基本字节流一次读写一个字节</span></span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> method1(<span class="built_in">String</span> srcString, <span class="built_in">String</span> destString)</span><br><span class="line">			throws IOException &#123;</span><br><span class="line">		FileInputStream fis = <span class="keyword">new</span> FileInputStream(srcString);</span><br><span class="line">		FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(destString);</span><br><span class="line"></span><br><span class="line">		int by = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> ((by = fis.read()) != <span class="number">-1</span>) &#123;</span><br><span class="line">			fos.write(by);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		fos.close();</span><br><span class="line">		fis.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以看出，经过BufferedxxxputStream修饰的字节流，速度快了很多，其实这也是一种设计模式的体现，装饰者设计模式。<br>今天就到这里，明天再来讲解字符流和其他流的知识。谢谢！！！</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感觉不错，打个赏。</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wx.png" alt="magic_jh 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="magic_jh 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java基础/" rel="tag"><i class="fa fa-tag"></i> java基础</a>
+          
+            <a href="/tags/IO/" rel="tag"><i class="fa fa-tag"></i> IO</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/31/java基础之异常/" rel="next" title="java基础之异常">
+                <i class="fa fa-chevron-left"></i> java基础之异常
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOS8xNDQzOQ=="></div>
+    </div>
+
+  
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://www.jh0904.top/jh/static/1.png"
+                alt="magic_jh" />
+            
+              <p class="site-author-name" itemprop="name">magic_jh</p>
+              <p class="site-description motion-element" itemprop="description">一个java菜鸟的个人博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/jh0904" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:www.jh19970904@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://weibo.com/u/5674515435" target="_blank" title="weibo"><i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.jh0904.top/" title="个人简历" target="_blank">个人简历</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#IO的概述"><span class="nav-number">1.</span> <span class="nav-text">IO的概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO如何学习？"><span class="nav-number">2.</span> <span class="nav-text">IO如何学习？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IO重点的类"><span class="nav-number">2.1.</span> <span class="nav-text">IO重点的类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IO的分类"><span class="nav-number">2.2.</span> <span class="nav-text">IO的分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InputStream-OutputStream的代码实现"><span class="nav-number">3.</span> <span class="nav-text">InputStream/OutputStream的代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FileOutputStream读取数据"><span class="nav-number">3.1.</span> <span class="nav-text">FileOutputStream读取数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#操作步骤"><span class="nav-number">3.1.1.</span> <span class="nav-text">操作步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码实现"><span class="nav-number">3.1.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意的问题"><span class="nav-number">3.1.3.</span> <span class="nav-text">注意的问题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FileInputStream读取数据"><span class="nav-number">3.2.</span> <span class="nav-text">FileInputStream读取数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#操作步骤-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">操作步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码体现："><span class="nav-number">3.2.2.</span> <span class="nav-text">代码体现：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例分析"><span class="nav-number">4.</span> <span class="nav-text">案例分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#复制文本文件"><span class="nav-number">4.1.</span> <span class="nav-text">复制文本文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制图片"><span class="nav-number">4.2.</span> <span class="nav-text">复制图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思考问题：计算机如何识别中文"><span class="nav-number">4.3.</span> <span class="nav-text">思考问题：计算机如何识别中文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符缓冲区流"><span class="nav-number">5.</span> <span class="nav-text">字符缓冲区流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件复制"><span class="nav-number">5.1.</span> <span class="nav-text">文件复制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">magic_jh</span>
+
+  
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.3.0</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
