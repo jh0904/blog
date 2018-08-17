@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-09T09:41:04.284Z</updated>
+  <updated>2018-08-17T15:18:05.122Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NoSQL简述</title>
+    <link href="http://yoursite.com/2018/08/17/NoSQL/"/>
+    <id>http://yoursite.com/2018/08/17/NoSQL/</id>
+    <published>2018-08-17T15:12:05.000Z</published>
+    <updated>2018-08-17T15:18:05.122Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！</p></blockquote><hr><h3 id="什么是nosql"><a href="#什么是nosql" class="headerlink" title="什么是nosql"></a>什么是nosql</h3><h4 id="NoSQL数据库概述"><a href="#NoSQL数据库概述" class="headerlink" title="NoSQL数据库概述"></a>NoSQL数据库概述</h4><p>NoSQL(NoSQL = Not Only SQL )，意即“不仅仅是SQL”，泛指非关系型的数据库。 <br><br>NoSQL 不依赖业务逻辑方式存储，而以简单的key-value模式存储。因此大大的增加了数据库的扩展能力。<br>特点是：</p><ul><li>不遵守SQL标准</li><li>不支持ACID（事务）</li><li>远超过SQL的性能</li></ul><p><strong>NoSQL使用场景</strong></p><ul><li>对数据高并发的读写</li><li>海量数据的读写</li><li>对数据高可扩展性的</li></ul><p><strong>NoSQL不适用场景</strong></p><ul><li>需要事务支持</li><li>基于sql的结构化查询存储，处理复杂的关系,需要即席查询。</li></ul><p><strong>主要的NoSQL数据库的介绍</strong></p><ol><li>Memcached</li></ol><p><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-17/83937861.jpg" alt=""></p><ul><li>很早出现的NoSql数据库</li><li>数据都在内存中，一般不持久化</li><li>支持简单的key-value模式</li><li>一般是作为++缓存数据库++辅助持久化的数据库</li></ul><ol start="2"><li>Redis</li></ol><p><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-17/86280857.jpg" alt=""></p><ul><li>几乎覆盖了Memcached的绝大部分功能</li><li>数据都在内存中，支持持久化，主要用作备份恢复</li><li>除了支持简单的key-value模式，还支持多种数据结构的存储，比如 list、set、hash、zset等。</li><li>一般是作为++缓存数据库++辅助持久化的数据库</li></ul><ol start="3"><li>mongoDB</li></ol><p><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-17/49011758.jpg" alt=""></p><ul><li>高性能、开源、模式自由(schema  free)的++文档型数据库++</li><li>数据都在内存中， 如果内存不足，把不常用的数据保存到硬盘</li><li>虽然是key-value模式，但是对value（尤其是json）提供了丰富的查询功能</li><li>支持二进制数据及大型对象</li><li>可以根据数据的特点替代RDBMS ，成为独立的数据库。或者配合RDBMS，存储特定的数据。</li></ul><h4 id="CAP原理和BASE"><a href="#CAP原理和BASE" class="headerlink" title="CAP原理和BASE"></a>CAP原理和BASE</h4><p><strong>关系型数据库遵循ACID规则</strong></p><p>事务在英文中是transaction，和现实世界中的交易很类似，它有如下四个特性：</p><p>1、A (Atomicity) 原子性<br>原子性很容易理解，也就是说事务里的所有操作要么全部做完，要么都不做，事务成功的条件是事务里的所有操作都成功，只要有一个操作失败，整个事务就失败，需要回滚。比如银行转账，从A账户转100元至B账户，分为两个步骤：1）从A账户取100元；2）存入100元至B账户。这两步要么一起完成，要么一起不完成，如果只完成第一步，第二步失败，钱会莫名其妙少了100元。</p><p>2、C (Consistency) 一致性<br>一致性也比较容易理解，也就是说数据库要一直处于一致的状态，事务的运行不会改变数据库原本的一致性约束。</p><p>3、I (Isolation) 独立性<br>所谓的独立性是指并发的事务之间不会互相影响，如果一个事务要访问的数据正在被另外一个事务修改，只要另外一个事务未提交，它所访问的数据就不受未提交事务的影响。比如现有有个交易是从A账户转100元至B账户，在这个交易还未完成的情况下，如果此时B查询自己的账户，是看不到新增加的100元的</p><p>4、D (Durability) 持久性</p><h2 id="持久性是指一旦事务提交后，它所做的修改将会永久的保存在数据库上，即使出现宕机也不会丢失。"><a href="#持久性是指一旦事务提交后，它所做的修改将会永久的保存在数据库上，即使出现宕机也不会丢失。" class="headerlink" title="持久性是指一旦事务提交后，它所做的修改将会永久的保存在数据库上，即使出现宕机也不会丢失。"></a>持久性是指一旦事务提交后，它所做的修改将会永久的保存在数据库上，即使出现宕机也不会丢失。</h2><p>但是现在我们使用了NoSQL数据库，它遵守的是CAP原理。</p><p>CAP原理是指：</p><blockquote><p>C : Consistency（强一致性） <br><br>A : Availability（可用性）<br><br>P : Partition tolerance（分区容错性）</p></blockquote><p>CAP理论虽然说很好，但是实际上最多只可以实现两个。<br>分区容忍性是我们必须要实现的，所以我们要在强一致性和可用性做选择。</p><p><em>没有NoSQL数据库能同时保证这三点</em></p><pre><code>CA 传统Oracle数据库（单点集群，满足一致性，可用性的系统，通常在可扩展性上不太强大。）AP 大多数网站架构的选择（满足一致性，分区容忍必的系统，通常性能不是特别高。）CP Redis、Mongodb  （满足可用性，分区容忍性的系统，通常可能对一致性要求低一些。）</code></pre><p> 注意：分布式架构的时候必须做出取舍。<br>一致性和可用性之间取一个平衡。多余大多数web应用，其实并不需要强一致性。<br>因此牺牲C换取P，这是目前分布式数据库产品的方向。</p><blockquote><p>CAP理论的核心：一个分布式系统不可能同时很好的满足一致性，可用性和分区容错性这三个需求，<br>最多只能同时较好的满足两个。</p></blockquote><p>有一个CAP的图片很形象，很清晰的说明了三个的分类和区别：</p><p><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-17/42527718.jpg" alt=""></p><p><strong>BASE原理</strong><br>BASE其实是下面三个术语的缩写：</p><pre><code>    基本可用（Basically Available）软状态（Soft state）最终一致（Eventually consistent）</code></pre><p>BASE就是为了解决数据库强一致性引起的问题而引起的可用性降低的解决方案。<br><br>具体的思想就是通过让系统放松对某一时刻数据一致性的要求来换取系统整体伸缩性和性能上改观。为什么这么说呢，缘由就在于大型系统往往由于地域分布和极高性能的要求，不可能采用分布式事务来完成这些指标，要想获得这些指标，我们必须采用另外一种方式来完成，这里BASE就是解决这个问题的办法</p><p>简单的了解一下分布式和集群</p><ol><li>分布式：不同的多台服务器上面部署不同的服务模块（工程），他们之间通过Rpc/Rmi之间通信和调用，对外提供服务和组内协作。</li><li>集群：不同的多台服务器上面部署相同的服务模块，通过分布式调度软件进行统一的调度，对外提供服务和访问。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还
+      
+    
+    </summary>
+    
+      <category term="NoSQL" scheme="http://yoursite.com/categories/NoSQL/"/>
+    
+    
+      <category term="数据库" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="NoSQL" scheme="http://yoursite.com/tags/NoSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis(一)</title>
+    <link href="http://yoursite.com/2018/08/17/Redis%E4%B8%80/"/>
+    <id>http://yoursite.com/2018/08/17/Redis一/</id>
+    <published>2018-08-17T15:11:53.000Z</published>
+    <updated>2018-08-17T15:14:48.136Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！</p></blockquote><hr><h3 id="初识redis"><a href="#初识redis" class="headerlink" title="初识redis"></a>初识redis</h3><h4 id="Redis的简单介绍"><a href="#Redis的简单介绍" class="headerlink" title="Redis的简单介绍"></a>Redis的简单介绍</h4><p>Redis是一个开源的key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，Redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是Redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。</p><h4 id="Redis的安装（Linux安装）"><a href="#Redis的安装（Linux安装）" class="headerlink" title="Redis的安装（Linux安装）"></a>Redis的安装（Linux安装）</h4><p>Windows安装比较简单，所以不做概述。<br>安装具体过程：</p><ol><li>下载获得redis-3.0.4.tar.gz后将它放入我们的Linux目录/opt</li><li>/opt目录下，解压命令:tar -zxvf redis-3.0.4.tar.gz</li><li>解压完成后出现文件夹：redis-3.0.4</li><li>进入目录:cd redis-3.0.4</li><li>在redis-3.0.4目录下执行make命令</li><li>如果make完成后继续执行make </li></ol><p>安装完成后的界面：<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-17/47697874.jpg" alt=""></p><p>文件的简单介绍</p><table><thead><tr><th>名称</th><th>功能</th></tr></thead><tbody><tr><td>Redis-benchmark</td><td>性能测试工具，可以在自己本子运行，看看自己本子性能如何 </td></tr><tr><td>Redis-check-aof</td><td>修复有问题的AOF文件，rdb和aof后面讲</td></tr><tr><td>Redis-check-dump</td><td>修复有问题的dump.rdb文件</td></tr><tr><td>Redis-cli</td><td>客户端，操作入口</td></tr><tr><td>Redis-sentinel</td><td>redis集群使用</td></tr><tr><td>Redis-server 1</td><td>Redis服务器启动命令</td></tr></tbody></table><p>注意事项：修改redis.conf文件将里面的daemonize no 改成 yes，让服务在后台启动；将默认的redis.conf拷贝到自己定义好的一个路径下，比如/myconf（保护Redis的安全）</p><h4 id="Redis的启动及杂项"><a href="#Redis的启动及杂项" class="headerlink" title="Redis的启动及杂项"></a>Redis的启动及杂项</h4><p><strong>启动</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-server /myredis/redis.conf</span><br><span class="line">redis-cli -p 6379</span><br></pre></td></tr></table></figure><p>测试连通</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ping</span><br><span class="line"></span><br><span class="line">--&gt;PONG   (出现这个表示连接成功)</span><br></pre></td></tr></table></figure><p><strong>关闭</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">单实例关闭：redis-cli shutdown</span><br><span class="line">多实例关闭，指定端口关闭:redis-cli -p 6379 shutdown</span><br></pre></td></tr></table></figure><p><strong>杂项知识讲解</strong></p><ol><li>单进程模型来处理客户端的请求。对读写等事件的响应<br>是通过对epoll函数的包装来做到的。Redis的实际处理速度完全依靠主进程的执行效率</li><li>默认16个数据库，类似数组下表从零开始，初始默认使用零号库</li><li>Select命令切换数据库</li><li>Dbsize查看当前数据库的key的数量</li><li>Flushdb：清空当前库</li><li>Flushall；通杀全部库</li><li>统一密码管理，16个库都是同样密码，要么都OK要么一个也连接不上</li><li>Redis索引都是从零开始</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还
+      
+    
+    </summary>
+    
+      <category term="NoSQL" scheme="http://yoursite.com/categories/NoSQL/"/>
+    
+    
+      <category term="NoSQL" scheme="http://yoursite.com/tags/NoSQL/"/>
+    
+      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title>学习TCP/UDP</title>
@@ -521,66 +577,6 @@
 &lt;font style=&quot;color:blue&quot;&gt;爱女票，爱Java❤❤❤ &lt;/font&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;String&quot;&gt;&lt;a href=&quot;#String&quot; class=&quot;headerlink&quot; title=&quot;String&quot;
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>强引用、软引用、弱引用、幻象引用有什么区别？</title>
-    <link href="http://yoursite.com/2018/07/10/%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E5%B9%BB%E8%B1%A1%E5%BC%95%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/"/>
-    <id>http://yoursite.com/2018/07/10/强引用、软引用、弱引用、幻象引用有什么区别？/</id>
-    <published>2018-07-10T03:29:45.000Z</published>
-    <updated>2018-07-10T03:31:56.251Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><font style="color:blue">爱女票，爱Java❤❤❤ </font></blockquote><h3 id="强引用（StrongReference）"><a href="#强引用（StrongReference）" class="headerlink" title="强引用（StrongReference）"></a>强引用（StrongReference）</h3><p>强引用是使用最普遍的引用。如果一个对象具有强引用，那垃圾回收器绝不会回收它。如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object o=<span class="keyword">new</span> Object();   <span class="comment">//  强引用</span></span><br></pre></td></tr></table></figure></p><p>通过关键字new创建对象，所关联的引用就是强引用。当JVM内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问题。<br>如果不使用时，要通过如下方式来弱化引用，如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">o=<span class="keyword">null</span>;     <span class="comment">// 帮助垃圾收集器回收此对象</span></span><br></pre></td></tr></table></figure></p><p>显式的将o设置为null；或者超出对象的生命周期范围，则gc认为该对象不存在引用。这样就可以被垃圾收集了，具体回收时机还是要看垃圾回收机制。<br><strong>例子：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">Object o=<span class="keyword">new</span> Object();</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>对于上述代码，可以看出方法的内部有一个强引用，这个引用保存在栈中，真正的引用内容（Object）保存在堆中。当这个方法运行完成之后就会退出方法栈，则引用内容的引用就不存在了，这个Object会被回收。<br>但是当这个o是全局变量时，就需要在不使用这个对象时要赋值为null，因为强引用不会被垃圾回收。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Removes all of the elements from this list.  The list will</span></span><br><span class="line"><span class="comment">   * be empty after this call returns.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      modCount++;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// clear to let GC do its work</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)</span><br><span class="line">          elementData[i] = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">      size = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><p>这个就是在java源码中的体现。就是在需要清除的时候，需要把elementData里面全部置为空，因为elementData是全局变量。</p><h3 id="软引用（SoftReference）"><a href="#软引用（SoftReference）" class="headerlink" title="软引用（SoftReference）"></a>软引用（SoftReference）</h3><p>是一种相对强引用的弱化一些的引用，可以让豁免一些垃圾收集，只有当JVM尝试内存不足时。才会尝试回收软引用指定的对象。JVM会确保在抛出OutOfMemoryError之前，会先清理软引用指定的对象。软引用通常用于内存敏感的高速缓存，如果还有空内存，就可以暂时保留缓存，当内存不足时清理掉，这样就保证了使用缓存的同时，不会耗尽内存。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str=<span class="keyword">new</span> String(<span class="string">"abc"</span>);                     </span><br><span class="line"><span class="comment">// 强引用</span></span><br><span class="line">SoftReference&lt;String&gt; softRef=<span class="keyword">new</span> SoftReference&lt;String&gt;(str);</span><br><span class="line"><span class="comment">// 软引用</span></span><br></pre></td></tr></table></figure></p><p>当内存不足时，等价于：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">If(JVM.内存不足()) &#123;</span><br><span class="line">   str = <span class="keyword">null</span>;  <span class="comment">// 转换为软引用</span></span><br><span class="line">   System.gc(); <span class="comment">// 垃圾回收器进行回收</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>软引用可以和一个引用队列（ReferenceQueue）联合使用，如果软引用所引用的对象被垃圾回收器回收，Java虚拟机就会把这个软引用加入到与之关联的引用队列中。</p><h3 id="弱引用（WeakReference）"><a href="#弱引用（WeakReference）" class="headerlink" title="弱引用（WeakReference）"></a>弱引用（WeakReference）</h3><p>弱引用并不能对对象实现豁免垃圾收集，仅仅是提供一种访问在弱引用状态下对象的途径。这就可以用来构建一种没有特定约束的关系。比如，维护一种非强制性的映射关系，如果试图获取时对象还存在，就使用它，否则重现实例化。它同样是对缓存实现的选择。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str=<span class="keyword">new</span> String(<span class="string">"abc"</span>);    </span><br><span class="line">WeakReference&lt;String&gt; abcWeakRef = <span class="keyword">new</span> WeakReference&lt;String&gt;(str);</span><br><span class="line">str=<span class="keyword">null</span>;</span><br></pre></td></tr></table></figure></p><p>当垃圾回收器进行扫描时,等同于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str = null;</span><br><span class="line">System.gc();</span><br></pre></td></tr></table></figure></p><p><strong>弱引用和软引用之间的去区别</strong>：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。 </p><h3 id="虚引用（PhantomReference）"><a href="#虚引用（PhantomReference）" class="headerlink" title="虚引用（PhantomReference）"></a>虚引用（PhantomReference）</h3><p> “虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。</p><p>虚引用主要用来跟踪对象被垃圾回收器回收的活动。虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列 （ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之 关联的引用队列中。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>  Java4种引用的级别由高到低依次为：<br> <font style="color:red"></font></p><blockquote><p>强引用  &gt;  软引用  &gt;  弱引用  &gt;  虚引用<br></p></blockquote><p>可以看一下在垃圾回收时候的图解：</p><center><br><br><img src="https://images2015.cnblogs.com/blog/647994/201702/647994-20170215235400691-2090269215.png" alt=""><br></center><p>当垃圾回收器回收时，某些对象会被回收，某些不会被回收。垃圾回收器会从根对象Object来标记存活的对象，然后将某些不可达的对象和一些引用的对象进行回收，如果对这方面不是很了解，可以参考如下的文章：</p><p>通过表格来说明一下，如下：</p><table><thead><tr><th>引用类型</th><th>被垃圾回收时间</th><th>用途</th><th>生存时间</th></tr></thead><tbody><tr><td>强引用</td><td>从来不会</td><td>对象的一般状态</td><td>JVN停止运行时终止</td></tr><tr><td>软引用</td><td>在内存不足时</td><td>对象缓存</td><td>内存不足时终止</td></tr><tr><td>弱引用</td><td>在垃圾回收时</td><td>对象缓存</td><td>GC运行后终止</td></tr><tr><td>虚引用</td><td>Unknow</td><td>Unknow</td><td>Unknow</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;font style=&quot;color:blue&quot;&gt;爱女票，爱Java❤❤❤ &lt;/font&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;强引用（StrongReference）&quot;&gt;&lt;a href=&quot;#强引用（StrongReference）&quot; class
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>final、finally、finalize的区别</title>
-    <link href="http://yoursite.com/2018/07/09/final%E3%80%81finally%E3%80%81finalize%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://yoursite.com/2018/07/09/final、finally、finalize的区别/</id>
-    <published>2018-07-09T13:03:35.000Z</published>
-    <updated>2018-07-09T13:10:37.512Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><font style="color:blue">爱女票，爱Java❤❤❤ </font></blockquote><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>首先，要我说，这个面试题，其中是三个其实没有什么联系，只不过是因为长的比较像，就拉出来考…但是从另一个方面看的话，这三个关键字还是很重要的。接下来简单介绍一下。</p><h3 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h3><p>final可以用来修饰类、方法、变量，分别有不同的意义，final修饰的类不可以继承的扩展。final修饰的方法不可以被重写（overrride），final修饰的变量则为常量（即不可修改的量）。</p><h3 id="finally关键字"><a href="#finally关键字" class="headerlink" title="finally关键字"></a>finally关键字</h3><p>finally则是java保证重点代码一定要被执行的一种机制，我们可以使用try-catch-fianlly或者try-finally来进行关闭JDBC连接、或者用于关闭一些流对象（现在也有新方法，就是try-with-catch可以不使用fianlly）。</p><h3 id="finalize方法"><a href="#finalize方法" class="headerlink" title="finalize方法"></a>finalize方法</h3><p>finalize是基础类java.lang.Object的一个方法。它的设计目的是保证对象在垃圾收集前完成特定资源的回收。JDK9中已不推荐使用。</p><h2 id="考点分析"><a href="#考点分析" class="headerlink" title="考点分析"></a>考点分析</h2><h3 id="深入理解final关键字"><a href="#深入理解final关键字" class="headerlink" title="深入理解final关键字"></a>深入理解final关键字</h3><p>在java类库中的定义和源码中，在java.lang包下，相当一部分被声明成final class ？因为这可以有效避免API使用者更改基础功能，某种程度上，这是保证平台安全性的必要手段。</p><ul><li>使用fianl修饰变量或者参数，也可以清楚地避免意外赋值导致的编程错误。甚至有人明确推荐将所有的方法参数、本地变量、成员变量都声明成final。</li><li>final变量产生了某种程度上的不可变（immutable）的效果,所以，可以用来保护只读数据，尤其在并发编程中，因为明确地不能再赋值fianl变量，有利于减少额外的同步开销，也可以省去一些防御性拷贝的必要。</li></ul><p>final还有性能上的好处<br>下面这段话摘自<i>《Java编程思想》</i>第四版第143页：</p><blockquote><p>“使用final方法的原因有两个。第一个原因是把方法锁定，以防任何继承类修改它的含义；第二个原因是效率。在早期的Java实现版本中，会将final方法转为内嵌调用。但是如果方法过于庞大，可能看不到内嵌调用带来的任何性能提升。在最近的Java版本中，不需要使用final方法进行这些优化了。</p></blockquote><font style="color:red">注：类的private方法会隐式地被指定为final方法。</font><h3 id="深入理解finally关键字"><a href="#深入理解finally关键字" class="headerlink" title="深入理解finally关键字"></a>深入理解finally关键字</h3><p>对于finally来说，最常见的还是在try-catch-finally中。在Java语言的异常处理中，finally块的作用就是为了保证无论出现什么情况，finally块里的代码一定会被执行。但是其中有一些特殊情况。比如说出现java虚拟机退出的时候。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line"><span class="comment">// do something Syst... </span></span><br><span class="line">System.exit(<span class="number">1</span>);</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">System.out.println(<span class="string">"Hello,World!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>就像出现上面的代码的时候，finally中并不会有任何反应。<br>对于finally还有其他的问题，比如，finally中return值到底会返回谁？<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinallyDemo2</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">System.out.println(getInt());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getInt</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">System.out.println(a / <span class="number">0</span>);</span><br><span class="line">a = <span class="number">20</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (ArithmeticException e) &#123;</span><br><span class="line">a = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">return</span> a;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * return a在程序执行到这一步的时候，这里不是return a而是return 30;这个返回路径就形成了。</span></span><br><span class="line"><span class="comment"> * 但是呢，它发现后面还有finally，所以继续执行finally的内容，a=40</span></span><br><span class="line"><span class="comment"> * 再次回到以前的返回路径，继续走return 30;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">a = <span class="number">40</span>;</span><br><span class="line"><span class="keyword">return</span> a;<span class="comment">//如果这样结果就是40了。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// return a;</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>大家仔细观察，其实最后的返回值是30，并没有返回其中的40，这就是说明返回值时，还是返回的是当时的值，和finally中的值并没有关系。这个是比较重要的一点。</p><p>其中在JDK1.7中有一个新特性：try-with-resources<br>try-with-resources语句是一个声明一个或多个资源的try语句。一个资源作为一个对象，必须在程序结束之后关闭。try-with-resources语句确保在语句的最后每个资源都被关闭，任何实现了java.lang.AutoCloseable和java.io.Closeable的对象都可以使用try-with-resource来实现异常处理和关闭资源。<br>具体使用见下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path))) &#123;</span><br><span class="line"><span class="keyword">return</span> br.readLine();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>把需要关闭的对象写在括号中，其中要关闭的对象必须实现java.lang.AutoCloseable和java.io.Closeable。</p><h3 id="深入理解finalize方法"><a href="#深入理解finalize方法" class="headerlink" title="深入理解finalize方法"></a>深入理解finalize方法</h3><p>finalize方法是比较难理解的一个方法，其中涉及了java垃圾回收机制的一些知识。<br>java提供finalize()方法，垃圾回收器准备释放内存的时候，会先调用finalize()。</p><ul><li>对象不一定会被回收。</li><li>垃圾回收不是析构函数。</li><li>垃圾回收只与内存有关。</li><li>垃圾回收和finalize()都是靠不住的，只要JVM还没有快到耗尽内存的地步，它是不会浪费时间进行垃圾回收的。<br>上面的解释来自《java编程思想》，本人对其了解也不是很多。有待提升。</li></ul><blockquote><p>这就是今天的内容，来自于杨晓峰老师的讲解和一些自己的理解和认识。有能力的同学可以支持一下，共同进步，共同努力。<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-8/91450487.jpg" alt=""></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;font style=&quot;color:blue&quot;&gt;爱女票，爱Java❤❤❤ &lt;/font&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;
       
     
     </summary>

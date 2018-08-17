@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/08/17/NoSQL/</loc>
+    
+    <lastmod>2018-08-17T15:18:05.122Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/08/17/Redis%E4%B8%80/</loc>
+    
+    <lastmod>2018-08-17T15:14:48.136Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/08/09/TCP%E7%9A%84%E7%9F%A5%E8%AF%86%E8%AE%B2%E8%A7%A3/</loc>
     
     <lastmod>2018-08-09T09:41:04.284Z</lastmod>
