@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-17T15:18:05.122Z</updated>
+  <updated>2018-08-19T12:28:51.302Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Redis（二）</title>
+    <link href="http://yoursite.com/2018/08/19/Redis2/"/>
+    <id>http://yoursite.com/2018/08/19/Redis2/</id>
+    <published>2018-08-19T12:25:54.000Z</published>
+    <updated>2018-08-19T12:28:51.302Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！</p></blockquote><hr><h3 id="redis的基本数据类型"><a href="#redis的基本数据类型" class="headerlink" title="redis的基本数据类型"></a>redis的基本数据类型</h3><p>Redis主要有五种数据类型</p><ul><li>String（字符串）</li></ul><pre><code>  String（字符串）string是redis最基本的类型，你可以理解成与Memcached一模一样的类型，一个key对应一个value。string类型是二进制安全的。意思是redis的string可以包含任何数据。比如jpg图片或者序列化的对象 。string类型是Redis最基本的数据类型，一个redis中字符串value最多可以是512M.</code></pre><ul><li>Hash（哈希，类似java里的Map）</li></ul><pre><code>Hash（哈希）Redis hash 是一个键值对集合。Redis hash是一个string类型的field和value的映射表，hash特别适合用于存储对象。类似Java里面的Map&lt;String,Object&gt;</code></pre><ul><li>List（列表）</li></ul><pre><code>List（列表）Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素导列表的头部（左边）或者尾部（右边）。它的底层实际是个链表</code></pre><ul><li>Set（集合）</li></ul><pre><code>Set（集合）Redis的Set是string类型的无序集合。它是通过HashTable实现实现的，</code></pre><ul><li>Zset(sorted set：有序集合)</li></ul><pre><code>zset(sorted set：有序集合)Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。zset的成员是唯一的,但分数(score)却可以重复。</code></pre><h4 id="Redis键的操作"><a href="#Redis键的操作" class="headerlink" title="Redis键的操作"></a>Redis键的操作</h4><p><strong>哪里去获得redis常见数据类型操作命令<br>  Http://redisdoc.com/</strong></p><ul><li>keys * 查询所有的键</li><li>exists key的名字，判断某个key是否存在</li><li>move key db   —&gt;当前库就没有了，被移除了</li><li>expire key 秒钟：为给定的key设置过期时间</li><li>ttl key 查看还有多少秒过期，-1表示永不过期，-2表示已过期</li><li>type key 查看你的key是什么类型</li></ul><h4 id="Redis五大数据结构"><a href="#Redis五大数据结构" class="headerlink" title="Redis五大数据结构"></a>Redis五大数据结构</h4><p>对于五大基本数据结构，增加，删除，遍历。Jedis代码和Redis操作基本无差异，已将代码上传到GIT，大家可以参考。</p><p><a href="https://github.com/jh0904/Learn_More/blob/master/src/main/java/Redis1/RedisTest.java" target="_blank" rel="noopener">https://github.com/jh0904/Learn_More/blob/master/src/main/java/Redis1/RedisTest.java</a></p><h3 id="redis的持久化"><a href="#redis的持久化" class="headerlink" title="redis的持久化"></a>redis的持久化</h3><h4 id="RDB（Redis-DataBase）"><a href="#RDB（Redis-DataBase）" class="headerlink" title="RDB（Redis DataBase）"></a>RDB（Redis DataBase）</h4><p>在指定的时间间隔内将内存中的数据集快照写入磁盘， 也就是行话讲的Snapshot快照，它恢复时是将快照文件直接读到内存里<br>Redis会单独创建（fork）一个子进程来进行持久化，会先将数据写入到 一个临时文件中，待持久化过程都结束了，再用这个临时文件替换上次持久化好的文件。 整个过程中，主进程是不进行任何IO操作的，这就确保了极高的性能 如果需要进行大规模数据的恢复，且对于数据恢复的完整性不是非常敏感，那RDB方 式要比AOF方式更加的高效。RDB的缺点是最后一次持久化后的数据可能丢失。</p><p>Rdb 保存的是dump.rdb文件</p><p><strong>如何触发RDB</strong></p><ol><li>配置文件中默认的快照配置</li></ol><blockquote><p>冷拷贝后重新使用 可以cp dump.rdb dump_new.rdb<br>需要牢记的一点是三种情况—&gt;<br><br>save 900 1 <br><br>save 300 10 <br><br>save 60 10000   <br><br>就是说保存的机制是900秒改动一次就保存。依次类比。</p><ol start="2"><li>命令save或者是bgsave</li></ol></blockquote><ul><li>Save：save时只管保存，其它不管，全部阻塞</li><li>BGSAVE：Redis会在后台异步进行快照操作， 快照同时还可以响应客户端请求。可以通过lastsave 命令获取最后一次成功执行快照的时间</li></ul><ol start="3"><li>执行flushall命令，也会产生dump.rdb文件，但里面是空的，无意义</li></ol><p><strong>如何恢复</strong></p><ul><li>将备份文件 (dump.rdb) 移动到 redis 安装目录并启动服务即可</li><li>CONFIG GET dir获取目录</li></ul><p><strong>优势</strong></p><ul><li>适合大规模的数据恢复</li><li>对数据完整性和一致性要求不高</li></ul><p><strong>缺点</strong></p><ul><li>在一定间隔时间做一次备份，所以如果redis意外down掉的话，就 会丢失最后一次快照后的所有修改</li><li>Fork的时候，内存中的数据被克隆了一份，大致2倍的膨胀性需要考虑</li></ul><p><strong>停止</strong></p><p>动态所有停止RDB保存规则的方法：redis-cli config set save “”</p><p>具体的分析大家可以参考下图：<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-18/61284435.jpg" alt=""></p><h4 id="AOF-Append-Only-File"><a href="#AOF-Append-Only-File" class="headerlink" title="AOF(Append Only File)"></a>AOF(Append Only File)</h4><p>Aof保存的是appendonly.aof文件</p><p>以日志的形式来记录每个写操作，将Redis执行过的所有写指令记录下来(读操作不记录)， 只许追加文件但不可以改写文件，redis启动之初会读取该文件重新构建数据，换言之，redis 重启的话就根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作</p><p><strong>AOF启动/修复/恢复</strong></p><ul><li>正常恢复</li></ul><pre><code>启动：设置Yes  修改默认的appendonly no，改为yes将有数据的aof文件复制一份保存到对应目录(config get dir)恢复：重启redis然后重新加载</code></pre><ul><li>异常恢复</li></ul><pre><code>启动：设置Yes  修改默认的appendonly no，改为yes备份被写坏的AOF文件修复：  Redis-check-aof --fix进行修复恢复：重启redis然后重新加载</code></pre><p><strong>Rewrite</strong><br>  是什么：</p><blockquote><p>  AOF采用文件追加方式，文件会越来越大为避免出现此种情况，新增了重写机制, 当AOF文件的大小超过所设定的阈值时，Redis就会启动AOF文件的内容压缩， 只保留可以恢复数据的最小指令集.可以使用命令bgrewriteaof</p></blockquote><p>  重写原理</p><blockquote><p>  AOF文件持续增长而过大时，会fork出一条新进程来将文件重写(也是先写临时文件最后再rename)， 遍历新进程的内存中数据，每条记录有一条的Set语句。重写aof文件的操作，并没有读取旧的aof文件， 而是将整个内存中的数据库内容用命令的方式重写了一个新的aof文件，这点和快照有点类似</p></blockquote><p> 触发机制</p><blockquote><p>  Redis会记录上次重写时的AOF大小，默认配置是当AOF文件大小是上次rewrite后大小的一倍且文件大于64M时触发</p></blockquote><p><strong>优势</strong></p><ul><li>每修改同步：appendfsync always   同步持久化 每次发生数据变更会被立即记录到磁盘  性能较差但数据完整性比较好</li><li>每秒同步：appendfsync everysec    异步操作，每秒记录   如果一秒内宕机，有数据丢失</li><li>不同步：appendfsync no   从不同步</li></ul><p><strong>劣势</strong></p><ul><li>相同数据集的数据而言aof文件要远大于rdb文件，恢复速度慢于rdb</li><li>Aof运行效率要慢于rdb,每秒同步策略效率较好，不同步效率和rdb相同</li></ul><p>具体的分析大家可以参考下图：<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-19/45047422.jpg" alt=""></p><h4 id="两者的对比和总结"><a href="#两者的对比和总结" class="headerlink" title="两者的对比和总结"></a>两者的对比和总结</h4><p>RDB持久化方式能够在指定的时间间隔能对你的数据进行快照存储</p><p>AOF持久化方式记录每次对服务器写的操作,当服务器重启的时候会重新执行这些 命令来恢复原始的数据,AOF命令以redis协议追加保存每次写的操作到文件末尾. Redis还能对AOF文件进行后台重写,使得AOF文件的体积不至于过大</p><p>++同时开启两种持久化方式++</p><p>  在这种情况下,当redis重启的时候会优先载入AOF文件来恢复原始的数据, 因为在通常情况下AOF文件保存的数据集要比RDB文件保存的数据集要完整.<br>  RDB的数据不实时，同时使用两者时服务器重启也只会找AOF文件。那要不要只使用AOF呢？ 作者建议不要，因为RDB更适合用于备份数据库(AOF在不断变化不好备份)， 快速重启，而且不会有AOF可能潜在的bug，留着作为一个万一的手段。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还
+      
+    
+    </summary>
+    
+      <category term="NoSQL" scheme="http://yoursite.com/categories/NoSQL/"/>
+    
+    
+      <category term="NoSQL" scheme="http://yoursite.com/tags/NoSQL/"/>
+    
+      <category term="Redis" scheme="http://yoursite.com/tags/Redis/"/>
+    
+  </entry>
   
   <entry>
     <title>NoSQL简述</title>
@@ -547,36 +575,6 @@
 &lt;font style=&quot;color:blue&quot;&gt;爱女票，爱Java❤❤❤ &lt;/font&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>String、StringBuffer、StringBuilder的区别？</title>
-    <link href="http://yoursite.com/2018/07/11/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F/"/>
-    <id>http://yoursite.com/2018/07/11/String、StringBuffer、StringBuilder的区别？/</id>
-    <published>2018-07-11T06:18:26.000Z</published>
-    <updated>2018-07-11T06:19:08.267Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><font style="color:blue">爱女票，爱Java❤❤❤ </font></blockquote><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>String 是 Java 语言非常基础和重要的类，提供了构造和管理字符串的各种基本逻辑。它是典型的 Immutable 类，被声明成为 final class，所有属性也都是 final 的。也由于它的不可变性，类似拼接、裁剪字符串等动作，都会产生新的 String 对象。由于字符串操作的普遍性，所以相关操作的效率往往对应用性能有明显影响。</p><h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h3><p>StringBuffer 是为解决上面提到拼接产生太多中间对象的问题而提供的一个类，我们可以用 append 或者 add 方法，把字符串添加到已有序列的末尾或者指定位置。StringBuffer 本质是一个线程安全的可修改字符序列，它保证了线程安全，也随之带来了额外的性能开销，所以除非有线程安全的需要，不然还是推荐使用它的后继者，也就是 StringBuilder。</p><h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><p>StringBuilder 是 Java 1.5 中新增的，在能力上和 StringBuffer 没有本质区别，但是它去掉了线程安全的部分，有效减小了开销，是绝大部分情况下进行字符串拼接的首选。</p><h3 id="三者区别"><a href="#三者区别" class="headerlink" title="三者区别"></a>三者区别</h3><table><thead><tr><th></th><th>String</th><th>StringBuffer</th><th>StringBuilder</th></tr></thead><tbody><tr><td>对象类型</td><td>字符串常量</td><td>字符串变量</td><td>字符串变量</td></tr><tr><td>线程安全</td><td>不安全</td><td>不安全</td><td>安全</td></tr><tr><td>执行效率</td><td>低</td><td>高</td><td>中</td></tr><tr><td>使用场景</td><td>操作少，数据少</td><td>单线程，操作多，数据多</td><td>多线程，操作多，数据多</td></tr></tbody></table><h3 id="String为什么设计成final？"><a href="#String为什么设计成final？" class="headerlink" title="String为什么设计成final？"></a>String为什么设计成final？</h3><p>原因无非就是下面几点：</p><ul><li>为了实现字符串池</li><li>为了线程安全</li><li>为了实现String可以创建HashCode不可变性</li></ul><p>首先要了解final关键字的含义，在之前的文章已经介绍过什么是fina具体可以查看之前的文章：<a href="https://blog.jh0904.top/2018/07/09/final%E3%80%81finally%E3%80%81finalize%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_blank" rel="noopener">final、finally、finalize的区别</a><br>我大概简述一下：final可以修饰类，方法和变量，并且被修饰的类或方法，被final修饰的类不能被继承，即它不能拥有自己的子类，被final修饰的方法不能被重写， final修饰的变量，无论是类属性、对象属性、形参还是局部变量，都需要进行初始化操作。<br>字符串在内存存储的样子如下图：<br><img src="http://i.imgur.com/3zlNPQJ.png" alt=""></p><p><strong>实现字符串池</strong><br>所以只有当字符串是不可变的，字符串池才有可能实现。字符串池的实现可以在运行时节约很多heap空间，因为不同的字符串变量都指向池中的同一个字符串。<br><strong>线程安全</strong><br>如果字符串是可变的，那么会引起很严重的安全问题。因为字符串是不可变的，所以它的值是不可改变的，否则改变字符串指向的对象的值，造成安全漏洞。<br>因为字符串是不可变的，所以是多线程安全的，同一个字符串实例可以被多个线程共享。这样便不用因为线程安全问题而使用同步。字符串自己便是线程安全的。<br>类加载器要用到字符串，不可变性提供了安全性，以便正确的类被加载。譬如你想加载java.sql.Connection类，而这个值被改成了myhacked.Connection，那么会对你的数据库造成不可知的破坏。<br><strong>HashCode不可变性</strong><br>因为字符串是不可变的，所以在它创建的时候hashcode就被缓存了，不需要重新计算。这就使得字符串很适合作为Map中的键，字符串的处理速度要快过其它的键对象。这就是HashMap中的键往往都使用字符串。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;font style=&quot;color:blue&quot;&gt;爱女票，爱Java❤❤❤ &lt;/font&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;String&quot;&gt;&lt;a href=&quot;#String&quot; class=&quot;headerlink&quot; title=&quot;String&quot;
       
     
     </summary>
