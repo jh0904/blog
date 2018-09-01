@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[GC算法]]></title>
+    <url>%2F2018%2F09%2F01%2FGC%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！ GC算法就是Java虚拟机的内存回收算法。总体的大纲已经上传，需要学习的其实这个大纲已经足够，其他的更加深入的内容，可以去看《深入理解java虚拟机》。 这个就是整个学习的大纲，具体的xmind文件上传到百度云。链接：https://pan.baidu.com/s/1C3smD1fyN2v-FlZgkNOwlA 密码：ll8o欢迎下载]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>JVM</tag>
+        <tag>GC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JUC]]></title>
     <url>%2F2018%2F08%2F28%2FJUC%2F</url>
     <content type="text"><![CDATA[每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！ 这次主要写的是关于JUC的一些知识点，其实就是高并发的一些内容，多线程的深入理解。脑图有限，就先放一张图片，需要的请下载，里面有代码和图片的示例。 链接：https://pan.baidu.com/s/19rkwxlc2R6NKx3xjE8CCUw 密码：f44x]]></content>
