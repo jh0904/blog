@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/09/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</loc>
+    
+    <lastmod>2018-09-04T15:22:18.004Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/09/01/GC%E7%AE%97%E6%B3%95/</loc>
     
     <lastmod>2018-09-01T15:04:47.973Z</lastmod>
