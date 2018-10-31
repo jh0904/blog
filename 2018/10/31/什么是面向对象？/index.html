@@ -115,20 +115,18 @@
 
 
 
-  <meta name="description" content="每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！   这次主要写的是关于JUC的一些知识点，其实就是高并发的一些内容，多线程的深入理解。脑图有限，就先放一张图片，需要的请下载，里面有代码和图">
-<meta name="keywords" content="多线程,JUC">
+  <meta name="description" content="什么是面向对象？之前面试的时候，有时候会问到一个很简单的问题，什么是面向对象编程思想？其实这个平时接触的很多,但是感觉越熟悉的东西却越无法表达出一个精髓。最近有幸看到《码处高效》，总结一些书里面的面向对象思想，也当做一个读书笔记。 OOP目标面向对象编程（Object Oriented Programming），简称OOP。其本质是以建立模型体现出来的抽象思维过程和面向对象的方法。模型是用来反映现">
+<meta name="keywords" content="java基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JUC">
-<meta property="og:url" content="http://yoursite.com/2018/08/28/JUC/index.html">
+<meta property="og:title" content="什么是面向对象？">
+<meta property="og:url" content="http://yoursite.com/2018/10/31/什么是面向对象？/index.html">
 <meta property="og:site_name" content="magic">
-<meta property="og:description" content="每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！   这次主要写的是关于JUC的一些知识点，其实就是高并发的一些内容，多线程的深入理解。脑图有限，就先放一张图片，需要的请下载，里面有代码和图">
+<meta property="og:description" content="什么是面向对象？之前面试的时候，有时候会问到一个很简单的问题，什么是面向对象编程思想？其实这个平时接触的很多,但是感觉越熟悉的东西却越无法表达出一个精髓。最近有幸看到《码处高效》，总结一些书里面的面向对象思想，也当做一个读书笔记。 OOP目标面向对象编程（Object Oriented Programming），简称OOP。其本质是以建立模型体现出来的抽象思维过程和面向对象的方法。模型是用来反映现">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-28/83402134.jpg">
-<meta property="og:updated_time" content="2018-08-28T13:33:40.121Z">
+<meta property="og:updated_time" content="2018-10-31T12:21:24.814Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JUC">
-<meta name="twitter:description" content="每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！   这次主要写的是关于JUC的一些知识点，其实就是高并发的一些内容，多线程的深入理解。脑图有限，就先放一张图片，需要的请下载，里面有代码和图">
-<meta name="twitter:image" content="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-28/83402134.jpg">
+<meta name="twitter:title" content="什么是面向对象？">
+<meta name="twitter:description" content="什么是面向对象？之前面试的时候，有时候会问到一个很简单的问题，什么是面向对象编程思想？其实这个平时接触的很多,但是感觉越熟悉的东西却越无法表达出一个精髓。最近有幸看到《码处高效》，总结一些书里面的面向对象思想，也当做一个读书笔记。 OOP目标面向对象编程（Object Oriented Programming），简称OOP。其本质是以建立模型体现出来的抽象思维过程和面向对象的方法。模型是用来反映现">
 
 
 
@@ -137,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/28/JUC/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/31/什么是面向对象？/"/>
 
 
 
@@ -147,7 +145,7 @@
   };
 </script>
 
-  <title>JUC | magic</title>
+  <title>什么是面向对象？ | magic</title>
   
 
 
@@ -350,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/28/JUC/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/什么是面向对象？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="magic_jh">
@@ -367,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JUC
+          <h1 class="post-title" itemprop="name headline">什么是面向对象？
               
             
           </h1>
@@ -392,7 +390,7 @@
                 
               
 
-              <time title="创建时间：2018-08-28 21:28:05 / 修改时间：21:33:40" itemprop="dateCreated datePublished" datetime="2018-08-28T21:28:05+08:00">2018-08-28</time>
+              <time title="创建时间：2018-10-31 00:00:00 / 修改时间：20:21:24" itemprop="dateCreated datePublished" datetime="2018-10-31T00:00:00+08:00">2018-10-31</time>
             
 
             
@@ -402,24 +400,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -448,12 +428,28 @@
       
 
       
-        <blockquote>
-<p>每天晚上疲劳的睡在床上时，才感觉真真切切地过了一天。人生最重要的不仅是努力，还有方向。压力不是有人比你努力，而是比你牛叉几倍的人比你更努力。即使看不到未来，即使看不到希望，也依然相信，自己错不了，自己选的人生错不了。第二天叫醒我的不是闹钟，其实，还是梦想！</p>
+        <h1 id="什么是面向对象？"><a href="#什么是面向对象？" class="headerlink" title="什么是面向对象？"></a>什么是面向对象？</h1><p>之前面试的时候，有时候会问到一个很简单的问题，什么是<u>面向对象编程思想</u>？其实这个平时接触的很多,但是感觉越熟悉的东西却越无法表达出一个精髓。最近有幸看到《码处高效》，总结一些书里面的面向对象思想，也当做一个读书笔记。</p>
+<h4 id="OOP目标"><a href="#OOP目标" class="headerlink" title="OOP目标"></a>OOP目标</h4><p>面向对象编程（Object Oriented Programming），简称OOP。其本质是以建立模型体现出来的抽象思维过程和面向对象的方法。模型是用来反映现实世界中事物特征的。</p>
+<p><u>面向对象实践了软件工程的三个主要目标：可维护性、可重用性、可扩展性。</u></p>
+<h4 id="面向过程与面向对象的区别"><a href="#面向过程与面向对象的区别" class="headerlink" title="面向过程与面向对象的区别"></a>面向过程与面向对象的区别</h4><p>面向过程是让程序有步骤地顺序做事。是一种过程化的叙事思路。但是缺点是面向大型软件开发的过程中。软件维护、代码复用产生了巨大的问题。代码写的就像流水账，代码耦合度大。往往会产生牵一发而动全身。</p>
+<blockquote>
+<p>首先举个例子：比如现在需要打开门，面向过程的思想去编程是open（Door door），door是做作为参数去传入方法中的。面向过程的思想是创建一个Door的对象，这个对象其中有属性（颜色，材质…），然后door这个对象必然有close()、open()的方法。</p>
 </blockquote>
-<hr>
-<p>这次主要写的是关于JUC的一些知识点，其实就是高并发的一些内容，多线程的深入理解。脑图有限，就先放一张图片，需要的请下载，里面有代码和图片的示例。<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-8-28/83402134.jpg" alt=""></p>
-<p>链接：<a href="https://pan.baidu.com/s/19rkwxlc2R6NKx3xjE8CCUw" target="_blank" rel="noopener">https://pan.baidu.com/s/19rkwxlc2R6NKx3xjE8CCUw</a> 密码：f44x</p>
+<p>从上面的例子就可以看出，面向过程强调是流程化的解决问题，结构松散，而面向对象是高内聚、低耦合，先去抽象模型，定义共性行为，再去解决实际问题。</p>
+<h4 id="面向对象的四个特征"><a href="#面向对象的四个特征" class="headerlink" title="面向对象的四个特征"></a>面向对象的四个特征</h4><p>一般来说面向对象有三大特征：封装、继承、多态。但是还有一个很重要的特性：<strong>抽象</strong>，抽象是作为程序猿核心的要素之一，体现程序猿对业务的建模能力，以及架构的宏观掌控力。</p>
+<blockquote>
+<p>面向对象思维，就是以对象模型为核心，丰富模型的内涵，扩展模型的外延，通过模型的行为组合去解决一类问题。封装使功能内聚的体现，使模块之间的耦合度降低，具有维护性；继承使子类能够继承父类，获得父类的属性和行为，提高复用性；多态是在复用性的基础上更具有扩展性，使运行期更具有想象力。</p>
+</blockquote>
+<ol>
+<li><p>抽象是面向对象的基础能力。正确的建模分析是封装、继承、多态的基础。在软件开发中，抽象分为<u>归纳</u>和<u>演绎</u>。前者是从具体到本质，从个性到共性，将一类事物的共同特性去做归一化的逻辑。后者是从本质到具体，从共性到个性，是逐渐形象化的过程。归纳需要从抽象出对象的共性和属性。演绎是在已有问题解决方案的情况下，正确的找出合适的场景。（比如查多改少的业务，应使用数组而不是链表）。最优秀的抽象就是高斯林（Java之父）写的Object类。</p>
+</li>
+<li><p>封装是在抽象的基础上决定信息是否公开，核心的问题是以什么样的方式暴露信息，抽象是要找属性和行为的共性，但是属性具有敏感性（不能直接暴露）。封装的任务就是对属性、数据、部分内容的敏感部分进行隐藏。对属性的访问和修改通过定义的公共接口去进行，某些敏感方法不需要外部感知。封装使面向对象变的简单，耦合度变低，更利于维护。举一个生活中的例子。我们不需要知道洗衣机的内部构造。我们只使用开启/关闭按钮去操纵洗衣机去洗衣服。对于内部构造我们不了解。降低了用户使用的成本，有效的保护了内部数据的安全。<br>其实这个符合面向对象设计的迪米特法则:即A模块使用B模块的某个接口行为，对B模块中除此行为之外的其他信息尽可能的少知道。这样子就尽可能降低耦合。 <br>我们平时使用的封装使private属性值，提供相应的get()/set()方法去获取属性值。但是这中方式和之前直接去取属性值之间的区别是什么？—–&gt;比如有一天需要做权限校验和日志。这是在直接获取属性值是无法实现的，但是可以在set方法中去实现。</p>
+</li>
+<li><p>继承允许创建具有逻辑等级结构的类体系，形成一个继承树。这样做的好处是，某些基础模块可以直接被复用或间接复用，父类的能力通过基础赋予子类。使代码具有层次感，更具扩展性。基础是is-a的关系。其实这就使用了面向对象的里氏置换原则（LSP）—-&gt;就是在任何父类出现的地方都可以用子类替换。比如说：“放下武器”，其中武器是父类，我们可以用子类替换，放下手枪。这种情况是可以编译成功并执行的。所以武器和手枪就是is-a的关系。<br>继承的成本很低，只需要关键字就可以，所以现在产生了继承滥用的问题。即方法污染和方法爆炸。<u>方法污染</u>是指父类具备的属性，通过继承传递给子类。子类不拥有执行此行为的能力。比如小黄鸭继承鸭子，但是小黄鸭不具备游泳的特性。<u>方法爆炸</u>是指继承树不断的扩大，底层类拥有的方法虽然都可以执行，但由于方法众多，很容易产生选择困难症。带来不便和安全隐患。提倡优先采用组合或聚合的类关系来复合其他类的能力。</p>
+</li>
+<li><p>多态是以上三个的特性为基础，根据运行时的实际对象类型，同一个方法产生不同的结果，使同一个行为具有不同的表现形式。我们明确两个概念“overload”和“override”，“override”为覆写，是子类实现接口。或继承父类时，保持方法的签名完全相同，实现不同的方法体，是垂直方向上行为的不同实现（一个类中就一个方法，父类，子类都有）。“overload”是重载，方法名称相同，参数个数和类型不同。是水平方向上行为的不同实现（一个类中多个重名方法）。多态是指在编译层面无法具体确定最终调用的方法体，以覆写为基础实现面向对象特征，在运行期由JVM通过动态绑定，调用合适的覆写方法体来执行。重载是编译期确定方法调用，属于静态绑定，本质上重载的结果是不同的方法。五克拉的碳元素，可以是钻石，也可以是煤。</p>
+</li>
+</ol>
 
       
     </div>
@@ -503,9 +499,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/多线程/" rel="tag"><i class="fa fa-tag"></i> 多线程</a>
-          
-            <a href="/tags/JUC/" rel="tag"><i class="fa fa-tag"></i> JUC</a>
+            <a href="/tags/java基础/" rel="tag"><i class="fa fa-tag"></i> java基础</a>
           
         </div>
       
@@ -518,8 +512,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/20/Redis-三/" rel="next" title="Redis(三)">
-                <i class="fa fa-chevron-left"></i> Redis(三)
+              <a href="/2018/09/29/抽象类和接口的区别/" rel="next" title="抽象类和接口的区别">
+                <i class="fa fa-chevron-left"></i> 抽象类和接口的区别
               </a>
             
           </div>
@@ -527,10 +521,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/01/GC算法/" rel="prev" title="GC算法">
-                GC算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -582,8 +572,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -752,6 +751,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是面向对象？"><span class="nav-number">1.</span> <span class="nav-text">什么是面向对象？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#OOP目标"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">OOP目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向过程与面向对象的区别"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">面向过程与面向对象的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象的四个特征"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">面向对象的四个特征</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

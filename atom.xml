@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-29T12:52:15.732Z</updated>
+  <updated>2018-10-31T12:21:24.814Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>什么是面向对象？</title>
+    <link href="http://yoursite.com/2018/10/31/%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9F/"/>
+    <id>http://yoursite.com/2018/10/31/什么是面向对象？/</id>
+    <published>2018-10-30T16:00:00.000Z</published>
+    <updated>2018-10-31T12:21:24.814Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是面向对象？"><a href="#什么是面向对象？" class="headerlink" title="什么是面向对象？"></a>什么是面向对象？</h1><p>之前面试的时候，有时候会问到一个很简单的问题，什么是<u>面向对象编程思想</u>？其实这个平时接触的很多,但是感觉越熟悉的东西却越无法表达出一个精髓。最近有幸看到《码处高效》，总结一些书里面的面向对象思想，也当做一个读书笔记。</p><h4 id="OOP目标"><a href="#OOP目标" class="headerlink" title="OOP目标"></a>OOP目标</h4><p>面向对象编程（Object Oriented Programming），简称OOP。其本质是以建立模型体现出来的抽象思维过程和面向对象的方法。模型是用来反映现实世界中事物特征的。</p><p><u>面向对象实践了软件工程的三个主要目标：可维护性、可重用性、可扩展性。</u></p><h4 id="面向过程与面向对象的区别"><a href="#面向过程与面向对象的区别" class="headerlink" title="面向过程与面向对象的区别"></a>面向过程与面向对象的区别</h4><p>面向过程是让程序有步骤地顺序做事。是一种过程化的叙事思路。但是缺点是面向大型软件开发的过程中。软件维护、代码复用产生了巨大的问题。代码写的就像流水账，代码耦合度大。往往会产生牵一发而动全身。</p><blockquote><p>首先举个例子：比如现在需要打开门，面向过程的思想去编程是open（Door door），door是做作为参数去传入方法中的。面向过程的思想是创建一个Door的对象，这个对象其中有属性（颜色，材质…），然后door这个对象必然有close()、open()的方法。</p></blockquote><p>从上面的例子就可以看出，面向过程强调是流程化的解决问题，结构松散，而面向对象是高内聚、低耦合，先去抽象模型，定义共性行为，再去解决实际问题。</p><h4 id="面向对象的四个特征"><a href="#面向对象的四个特征" class="headerlink" title="面向对象的四个特征"></a>面向对象的四个特征</h4><p>一般来说面向对象有三大特征：封装、继承、多态。但是还有一个很重要的特性：<strong>抽象</strong>，抽象是作为程序猿核心的要素之一，体现程序猿对业务的建模能力，以及架构的宏观掌控力。</p><blockquote><p>面向对象思维，就是以对象模型为核心，丰富模型的内涵，扩展模型的外延，通过模型的行为组合去解决一类问题。封装使功能内聚的体现，使模块之间的耦合度降低，具有维护性；继承使子类能够继承父类，获得父类的属性和行为，提高复用性；多态是在复用性的基础上更具有扩展性，使运行期更具有想象力。</p></blockquote><ol><li><p>抽象是面向对象的基础能力。正确的建模分析是封装、继承、多态的基础。在软件开发中，抽象分为<u>归纳</u>和<u>演绎</u>。前者是从具体到本质，从个性到共性，将一类事物的共同特性去做归一化的逻辑。后者是从本质到具体，从共性到个性，是逐渐形象化的过程。归纳需要从抽象出对象的共性和属性。演绎是在已有问题解决方案的情况下，正确的找出合适的场景。（比如查多改少的业务，应使用数组而不是链表）。最优秀的抽象就是高斯林（Java之父）写的Object类。</p></li><li><p>封装是在抽象的基础上决定信息是否公开，核心的问题是以什么样的方式暴露信息，抽象是要找属性和行为的共性，但是属性具有敏感性（不能直接暴露）。封装的任务就是对属性、数据、部分内容的敏感部分进行隐藏。对属性的访问和修改通过定义的公共接口去进行，某些敏感方法不需要外部感知。封装使面向对象变的简单，耦合度变低，更利于维护。举一个生活中的例子。我们不需要知道洗衣机的内部构造。我们只使用开启/关闭按钮去操纵洗衣机去洗衣服。对于内部构造我们不了解。降低了用户使用的成本，有效的保护了内部数据的安全。<br>其实这个符合面向对象设计的迪米特法则:即A模块使用B模块的某个接口行为，对B模块中除此行为之外的其他信息尽可能的少知道。这样子就尽可能降低耦合。 <br>我们平时使用的封装使private属性值，提供相应的get()/set()方法去获取属性值。但是这中方式和之前直接去取属性值之间的区别是什么？—–&gt;比如有一天需要做权限校验和日志。这是在直接获取属性值是无法实现的，但是可以在set方法中去实现。</p></li><li><p>继承允许创建具有逻辑等级结构的类体系，形成一个继承树。这样做的好处是，某些基础模块可以直接被复用或间接复用，父类的能力通过基础赋予子类。使代码具有层次感，更具扩展性。基础是is-a的关系。其实这就使用了面向对象的里氏置换原则（LSP）—-&gt;就是在任何父类出现的地方都可以用子类替换。比如说：“放下武器”，其中武器是父类，我们可以用子类替换，放下手枪。这种情况是可以编译成功并执行的。所以武器和手枪就是is-a的关系。<br>继承的成本很低，只需要关键字就可以，所以现在产生了继承滥用的问题。即方法污染和方法爆炸。<u>方法污染</u>是指父类具备的属性，通过继承传递给子类。子类不拥有执行此行为的能力。比如小黄鸭继承鸭子，但是小黄鸭不具备游泳的特性。<u>方法爆炸</u>是指继承树不断的扩大，底层类拥有的方法虽然都可以执行，但由于方法众多，很容易产生选择困难症。带来不便和安全隐患。提倡优先采用组合或聚合的类关系来复合其他类的能力。</p></li><li><p>多态是以上三个的特性为基础，根据运行时的实际对象类型，同一个方法产生不同的结果，使同一个行为具有不同的表现形式。我们明确两个概念“overload”和“override”，“override”为覆写，是子类实现接口。或继承父类时，保持方法的签名完全相同，实现不同的方法体，是垂直方向上行为的不同实现（一个类中就一个方法，父类，子类都有）。“overload”是重载，方法名称相同，参数个数和类型不同。是水平方向上行为的不同实现（一个类中多个重名方法）。多态是指在编译层面无法具体确定最终调用的方法体，以覆写为基础实现面向对象特征，在运行期由JVM通过动态绑定，调用合适的覆写方法体来执行。重载是编译期确定方法调用，属于静态绑定，本质上重载的结果是不同的方法。五克拉的碳元素，可以是钻石，也可以是煤。</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;什么是面向对象？&quot;&gt;&lt;a href=&quot;#什么是面向对象？&quot; class=&quot;headerlink&quot; title=&quot;什么是面向对象？&quot;&gt;&lt;/a&gt;什么是面向对象？&lt;/h1&gt;&lt;p&gt;之前面试的时候，有时候会问到一个很简单的问题，什么是&lt;u&gt;面向对象编程思想&lt;/u&gt;？其实这个
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>抽象类和接口的区别</title>
@@ -540,36 +563,6 @@
       <category term="SSM" scheme="http://yoursite.com/tags/SSM/"/>
     
       <category term="java项目" scheme="http://yoursite.com/tags/java%E9%A1%B9%E7%9B%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java提供了那些IO方式？NIO如何实现多路复用？</title>
-    <link href="http://yoursite.com/2018/07/21/java%E6%8F%90%E4%BE%9B%E4%BA%86%E9%82%A3%E4%BA%9BIO%E6%96%B9%E5%BC%8F%EF%BC%9FNIO%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%EF%BC%9F/"/>
-    <id>http://yoursite.com/2018/07/21/java提供了那些IO方式？NIO如何实现多路复用？/</id>
-    <published>2018-07-21T00:57:55.000Z</published>
-    <updated>2018-07-21T00:58:30.708Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><font style="color:blue">爱女票，爱Java❤❤❤ </font></blockquote><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Java IO 方式有很多种，基于不同的 IO 抽象模型和交互方式，可以进行简单区分。</p><p>首先，传统的 java.io 包，它基于流模型实现，提供了我们最熟知的一些 IO 功能，比如 File 抽象、输入输出流等。交互方式是同步、阻塞的方式，也就是说，在读取输入流或者写入输出流时，在读、写动作完成之前，线程会一直阻塞在那里，它们之间的调用是可靠的线性顺序。</p><p>java.io 包的好处是代码比较简单、直观，缺点则是 IO 效率和扩展性存在局限性，容易成为应用性能的瓶颈。</p><p>很多时候，人们也把 java.net 下面提供的部分网络 API，比如 Socket、ServerSocket、HttpURLConnection 也归类到同步阻塞 IO 类库，因为网络通信同样是 IO 行为。</p><p>第二，在 Java 1.4 中引入了 NIO 框架（java.nio 包），提供了 Channel、Selector、Buffer 等新的抽象，可以构建多路复用的、同步非阻塞 IO 程序，同时提供了更接近操作系统底层的高性能数据操作方式。</p><p>第三，在 Java 7 中，NIO 有了进一步的改进，也就是 NIO 2，引入了异步非阻塞 IO 方式，也有很多人叫它 AIO（Asynchronous IO）。异步 IO 操作基于事件和回调机制，可以简单理解为，应用操作直接返回，而不会阻塞在那里，当后台处理完成，操作系统会通知相应线程进行后续工作。</p><h3 id="考点分析"><a href="#考点分析" class="headerlink" title="考点分析"></a>考点分析</h3><p>上面所列出的回答是一种常见的分类方式，即所谓的BIO、NIO、AIO。</p><p>主要考察的点有：</p><ul><li>基础的API设计与功能<br>InputStream/OutputStream和Reader/Writer的区别和使用。</li><li>NIO、NIO2的基本组成。</li><li>不同场景下，分析BIO和NIO的设计和实现原理。</li><li>NIO提供高性能的原理</li><li><p>NIO还存在那些问题？改进的想法？</p><h3 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4></li><li>区分同步或异步（synchronous/asynchronous）<blockquote><p>所谓同步是指一个任务的完成需要依赖另一个任务时，只有等待被依赖的任务完成后，依赖的任务才能完成，这是一个可靠的任务序列。要成功都成功，要失败都失败，两个任务的状态可以保持一致。<br>异步不需要等待依赖的任务完成。只是通知被依赖的任务要完成什么工作，依赖的任务也立即执行，只要自己完成了整个任务就算完成了，至于被依赖的任务最终是否真正完成，依赖它的任务无法确定，所以它是不可靠的任务序列。</p></blockquote></li><li>区分阻塞与非阻塞（blocking/non-blocking）<blockquote><p>在进行阻塞操作时，当前线程会处于阻塞状态，无法从事其他任务，只有当条件就绪才能继续，比如 ServerSocket 新连接建立完毕，或数据读取、写入操作完成；而非阻塞则是不管 IO 操作是否结束，直接返回，相应操作在后台继续处理。</p></blockquote></li></ul><p>对于IO，做一下总结：</p><ul><li>IO不仅仅是对文件的操作，在网络编程中，比如socket通信，都是典型的IO操作目标。</li><li>输入流、输出流（InputStream/OutputStream）适用于读取或者写入字节，例如图片操作文件。</li><li>Reader/Writer则是用于操作字符的，增加字符编解码的功能，适用于从文件中读取或者写入文本信息2，本质上计算机操作的都是字节，不管是从网络通信还是文件读取，Reader/Writer相当于构建了应用逻辑与原始数据之间的桥梁。</li><li>BufferedOutputStream等带缓冲区的实现，可以避免频繁的磁盘读写，进而提高 IO处理效率。这种设计利用了缓冲区，将批量数据进行一次操作，但在使用中千万别忘了 flush。</li><li>参考下面这张类图，很多 IO工具类都实现了 Closeable接口，因为需要进行资源的释放。比如，打开 FileInputStream，它就会获取相应的文件描述符（ FileDescriptor），需要利用 try- with- resources、 try- finally等机制保证 FileInputStream被明确关闭，进而相应文件描述符也会失效，否则将导致资源无法被释放。利用专栏前面的内容提到的 Cleaner或 finalize机制作为资源释放的最后把关，也是必要的。<br><img src="http://magic-jh.oss-cn-beijing.aliyuncs.com/18-7-21/67006062.jpg" alt=""></li></ul><h4 id="NIO的概览"><a href="#NIO的概览" class="headerlink" title="NIO的概览"></a>NIO的概览</h4><ol><li>首先了解一下NIO的基本组成部分：</li></ol><ul><li><p>Chnnel</p><blockquote><p>由 java.nio.channels 包定义的。 Channel 表示 IO 源与目标打开的连接。<br>Channel 类似于传统的“流”。只不过 Channel本身不能直接访问数据， Channel 只能与Buffer 进行交互。<br>类似在 Linux 之类操作系统上看到的文件描述符，是 NIO 中被用来支持批量式 IO 操作的一种抽象。<br>File 或者 Socket，通常被认为是比较高层次的抽象，而 Channel 则是更加操作系统底层的一种抽象，这也使得 NIO 得以充分利用现代操作系统底层机制，获得特定场景的性能优化，例如，DMA（Direct Memory Access）等。不同层次的抽象是相互关联的，我们可以通过 Socket 获取 Channel，反之亦然。</p></blockquote></li><li><p>Buffer</p><blockquote><p>一个用于特定基本数据类型的容器。由 java.nio 包定义的，所有缓冲区都是 Buffer 抽象类的子类。Java NIO 中的 Buffer 主要用于与 NIO 通道进行交互，数据是从通道读入缓冲区，从缓冲区写入通道中的</p></blockquote></li><li>Selector<blockquote><p>是 NIO 实现多路复用的基础，它提供了一种高效的机制，可以检测到注册在 Selector 上的多个 Channel 中，是否有 Channel 处于就绪状态，进而实现了单线程对多 Channel 的高效管理。<br>Selector 同样是基于底层操作系统机制，不同模式、不同版本都存在区别，例如，在最新的代码库里，相关实现如下：<br>在Linux中依赖于epoll<br>在Windows中依赖于iocp模型</p></blockquote></li><li>Chartset<blockquote><p>提供 Unicode 字符串定义，NIO 也提供了相应的编解码器等，例如，通过下面的方式进行字符串到 ByteBuffer 的转换：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CharSet.defaultCharSet().encode(<span class="string">"Hello,World"</span>)</span><br></pre></td></tr></table></figure></blockquote></li></ul><ol start="2"><li>NIO的具体作用</li></ol><p>未完待续…</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;font style=&quot;color:blue&quot;&gt;爱女票，爱Java❤❤❤ &lt;/font&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="java基础" scheme="http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
